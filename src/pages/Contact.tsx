@@ -68,10 +68,10 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Button
                         variant="outline"
-                        className="border-zinc-700 text-gray-300 hover:border-violet-600 hover:text-violet-400 py-6"
+                        className="border-violet-600/50 bg-violet-600/10 text-violet-300 hover:bg-violet-600/30 hover:border-violet-400 hover:text-violet-200 py-6 transition-all"
                         asChild
                       >
                         <a href="https://github.com/aryansinghal" target="_blank" rel="noopener noreferrer">
@@ -81,7 +81,7 @@ export default function Contact() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="border-zinc-700 text-gray-300 hover:border-violet-600 hover:text-violet-400 py-6"
+                        className="border-blue-600/50 bg-blue-600/10 text-blue-300 hover:bg-blue-600/30 hover:border-blue-400 hover:text-blue-200 py-6 transition-all"
                         asChild
                       >
                         <a href="https://linkedin.com/in/aryansinghal" target="_blank" rel="noopener noreferrer">
@@ -91,12 +91,24 @@ export default function Contact() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="border-zinc-700 text-gray-300 hover:border-violet-600 hover:text-violet-400 py-6"
+                        className="border-cyan-600/50 bg-cyan-600/10 text-cyan-300 hover:bg-cyan-600/30 hover:border-cyan-400 hover:text-cyan-200 py-6 transition-all"
                         asChild
                       >
                         <a href="https://twitter.com/aryansinghal" target="_blank" rel="noopener noreferrer">
                           <Twitter className="mr-2 h-5 w-5" />
                           Twitter
+                        </a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="border-emerald-600/50 bg-emerald-600/10 text-emerald-300 hover:bg-emerald-600/30 hover:border-emerald-400 hover:text-emerald-200 py-6 transition-all"
+                        asChild
+                      >
+                        <a href="https://scholar.google.com/citations?user=YOURUSERID" target="_blank" rel="noopener noreferrer">
+                          <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
+                          </svg>
+                          Google Scholar
                         </a>
                       </Button>
                     </div>

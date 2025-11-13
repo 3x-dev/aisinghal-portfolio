@@ -77,6 +77,7 @@ export function AnimatedBackground() {
           x: [0, 120, 0],
           y: [0, -120, 0],
           scale: [1, 1.5, 1],
+          rotate: [0, 180, 360],
         }}
         transition={{
           duration: 18,
@@ -96,6 +97,7 @@ export function AnimatedBackground() {
           x: [0, -90, 0],
           y: [0, 90, 0],
           scale: [1, 1.3, 1],
+          rotate: [360, 180, 0],
         }}
         transition={{
           duration: 14,
@@ -108,6 +110,29 @@ export function AnimatedBackground() {
           bottom: "30%",
         }}
       />
+
+      {/* Floating particles */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="fixed w-2 h-2 rounded-full pointer-events-none z-0"
+          style={{
+            background: "rgba(139,92,246,0.6)",
+            left: `${20 + i * 15}%`,
+            top: `${30 + i * 10}%`,
+          }}
+          animate={{
+            y: [0, -100, 0],
+            opacity: [0.2, 0.8, 0.2],
+          }}
+          transition={{
+            duration: 5 + i,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.5,
+          }}
+        />
+      ))}
 
       {/* Grid pattern overlay with subtle animation */}
       <motion.div 

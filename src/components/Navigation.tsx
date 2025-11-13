@@ -35,10 +35,10 @@ export function Navigation() {
                 key={link.path}
                 variant="ghost"
                 asChild
-                className={`relative ${
+                className={`relative transition-colors ${
                   location.pathname === link.path
                     ? "text-violet-400"
-                    : "text-gray-400 hover:text-white"
+                    : "text-gray-400 hover:text-violet-300"
                 }`}
               >
                 <Link to={link.path}>

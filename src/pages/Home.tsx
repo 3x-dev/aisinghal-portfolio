@@ -7,7 +7,9 @@ import { Link } from "react-router";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Bottom gradient to prevent white space */}
+      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
       <AnimatedBackground />
       <Navigation />
       
@@ -24,12 +26,20 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
               className="mb-8"
             >
-              <span className="text-emerald-400 font-mono text-lg">$ whoami</span>
+              <span className="text-emerald-400 font-mono text-lg tracking-wider">
+                <motion.span
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  ▸
+                </motion.span>
+                {" "}INITIALIZING...
+              </span>
             </motion.div>
 
             <h1 className="text-8xl md:text-9xl font-black mb-8 leading-none">
@@ -96,7 +106,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-violet-600 text-violet-400 hover:bg-violet-600/20 hover:text-violet-300"
+                className="border-violet-600 text-violet-400 hover:bg-violet-600/30 hover:text-violet-200 hover:border-violet-400 transition-all"
                 asChild
               >
                 <Link to="/now">What I'm Doing Now</Link>
@@ -104,7 +114,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/20 hover:text-emerald-300"
+                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/30 hover:text-emerald-200 hover:border-emerald-400 transition-all"
                 asChild
               >
                 <Link to="/contact">Get In Touch</Link>
