@@ -8,7 +8,9 @@ import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
-import Portfolio from "./pages/Portfolio.tsx";
+import Home from "./pages/Home.tsx";
+import Now from "./pages/Now.tsx";
+import Projects from "./pages/Projects.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 
@@ -48,7 +50,9 @@ createRoot(document.getElementById("root")!).render(
         <BrowserRouter>
           <RouteSyncer />
           <Routes>
-            <Route path="/" element={<Portfolio />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/now" element={<Now />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
