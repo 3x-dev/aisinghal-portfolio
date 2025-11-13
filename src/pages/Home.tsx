@@ -25,23 +25,6 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-              className="mb-8"
-            >
-              <span className="text-emerald-400 font-mono text-lg tracking-wider">
-                <motion.span
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  ▸
-                </motion.span>
-                {" "}INITIALIZING...
-              </span>
-            </motion.div>
-
             <h1 className="text-8xl md:text-9xl font-black mb-8 leading-none">
               <motion.span
                 className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent"
