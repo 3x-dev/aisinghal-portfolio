@@ -96,7 +96,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-violet-600 text-violet-400 hover:bg-violet-600/10"
+                className="border-violet-600 text-violet-400 hover:bg-violet-600/20 hover:text-violet-300"
                 asChild
               >
                 <Link to="/now">What I'm Doing Now</Link>
@@ -104,7 +104,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/10"
+                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/20 hover:text-emerald-300"
                 asChild
               >
                 <Link to="/contact">Get In Touch</Link>

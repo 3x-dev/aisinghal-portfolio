@@ -70,8 +70,57 @@ export function AnimatedBackground() {
         }}
       />
 
-      {/* Grid pattern overlay */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-20 pointer-events-none z-0" />
+      {/* Additional floating orbs for more movement */}
+      <motion.div
+        className="fixed w-[300px] h-[300px] rounded-full pointer-events-none z-0 blur-3xl opacity-15"
+        animate={{
+          x: [0, 120, 0],
+          y: [0, -120, 0],
+          scale: [1, 1.5, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)",
+          left: "40%",
+          top: "60%",
+        }}
+      />
+
+      <motion.div
+        className="fixed w-[350px] h-[350px] rounded-full pointer-events-none z-0 blur-3xl opacity-20"
+        animate={{
+          x: [0, -90, 0],
+          y: [0, 90, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(217,70,239,0.3) 0%, transparent 70%)",
+          right: "30%",
+          bottom: "30%",
+        }}
+      />
+
+      {/* Grid pattern overlay with subtle animation */}
+      <motion.div 
+        className="fixed inset-0 bg-grid-pattern pointer-events-none z-0"
+        animate={{
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
     </>
   );
 }

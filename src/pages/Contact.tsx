@@ -51,7 +51,7 @@ export default function Contact() {
                       className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg py-6"
                       asChild
                     >
-                      <a href="mailto:aryan.singhal2016@gmail.com">
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aryan.singhal2016@gmail.com" target="_blank" rel="noopener noreferrer">
                         <Mail className="mr-2 h-5 w-5" />
                         aryan.singhal2016@gmail.com
                       </a>
