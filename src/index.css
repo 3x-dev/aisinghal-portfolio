@@ -44,7 +44,7 @@
 
 /* CHANGE VALUES FOR THEME */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --background: oklch(0.99 0.005 264);
   --foreground: oklch(0.15 0.02 264);
   --card: oklch(1 0 0);
