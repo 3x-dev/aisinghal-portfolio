@@ -101,6 +101,14 @@ export default function Home() {
               >
                 <Link to="/now">What I'm Doing Now</Link>
               </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/10"
+                asChild
+              >
+                <Link to="/contact">Get In Touch</Link>
+              </Button>
             </motion.div>
           </motion.div>
         </div>

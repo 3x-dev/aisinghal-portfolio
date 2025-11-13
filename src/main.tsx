@@ -11,6 +11,10 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import Now from "./pages/Now.tsx";
 import Projects from "./pages/Projects.tsx";
+import Thinking from "./pages/Thinking.tsx";
+import About from "./pages/About.tsx";
+import PastWork from "./pages/PastWork.tsx";
+import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 
@@ -53,6 +57,10 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<Home />} />
             <Route path="/now" element={<Now />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/thinking" element={<Thinking />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/past-work" element={<PastWork />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
