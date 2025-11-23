@@ -8,9 +8,7 @@ export function CursorGlow() {
   const baseY = useMotionValue(0);
 
   // Smoother spring configuration
-  const springConfig = { stiffness: 500, damping: 28, mass: 0.5 };
-  const glowX = useSpring(baseX, { stiffness: 150, damping: 20, mass: 0.8 });
-  const glowY = useSpring(baseY, { stiffness: 150, damping: 20, mass: 0.8 });
+  const springConfig = { stiffness: 400, damping: 28, mass: 0.5 };
   const dotX = useSpring(baseX, springConfig);
   const dotY = useSpring(baseY, springConfig);
 
@@ -55,12 +53,6 @@ export function CursorGlow() {
 
   return (
     <>
-      <motion.div
-        className="pointer-events-none fixed z-[100] mix-blend-screen"
-        style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
-      >
-        <div className="h-20 w-20 rounded-full bg-violet-600/30 blur-[32px]" />
-      </motion.div>
       <motion.div
         className="pointer-events-none fixed z-[101]"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}

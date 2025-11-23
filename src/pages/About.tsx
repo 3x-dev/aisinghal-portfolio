@@ -56,7 +56,7 @@ export default function About() {
         >
           <div className="mb-16">
             <h1 className="text-6xl md:text-7xl font-black mb-6">
-              <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              <span className="animated-gradient-text">
                 ABOUT
               </span>
             </h1>

@@ -329,7 +329,7 @@ export default function Portfolio() {
               LET'S BUILD SOMETHING
             </h2>
             <p className="text-2xl text-gray-400 mb-12">
-              Got an idea? A problem to solve? Or just want to talk tech?
+              Got an idea? A problem to solve? Or just want to chat?
             </p>
             <Button 
               size="lg" 

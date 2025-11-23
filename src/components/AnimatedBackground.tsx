@@ -1,6 +1,49 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
 
+const FLOATING_ORBS = [
+  {
+    size: 560,
+    color: "rgba(147,51,234,0.45)",
+    position: { left: "5%", top: "10%" },
+    animate: { x: [0, 80, -60, 0], y: [0, -70, 40, 0], scale: [1, 1.25, 1] },
+    duration: 18,
+    delay: 0,
+  },
+  {
+    size: 460,
+    color: "rgba(236,72,153,0.42)",
+    position: { right: "8%", top: "15%" },
+    animate: { x: [0, -60, 40, 0], y: [0, 60, -40, 0], scale: [1, 1.3, 1] },
+    duration: 16,
+    delay: 2,
+  },
+  {
+    size: 520,
+    color: "rgba(217,70,239,0.35)",
+    position: { left: "18%", bottom: "10%" },
+    animate: { x: [0, 90, -30, 0], y: [0, -40, 60, 0], scale: [1, 1.2, 1] },
+    duration: 20,
+    delay: 1,
+  },
+  {
+    size: 420,
+    color: "rgba(168,85,247,0.35)",
+    position: { right: "20%", bottom: "12%" },
+    animate: { x: [0, -80, 20, 0], y: [0, -20, 40, 0], scale: [1, 1.35, 1] },
+    duration: 22,
+    delay: 3,
+  },
+];
+
+const PARTICLE_CONFIGS = Array.from({ length: 16 }, (_, i) => ({
+  id: i,
+  size: 2 + (i % 3),
+  left: `${(i * 13 + 7) % 100}%`,
+  top: `${(i * 9 + 15) % 100}%`,
+  delay: i * 0.35,
+}));
+
 export function AnimatedBackground() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -47,108 +90,80 @@ export function AnimatedBackground() {
           ease: "easeInOut",
         }}
       />
-      
-      <motion.div
-        className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl opacity-20"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -100, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%)",
-          right: "10%",
-          top: "20%",
-        }}
-      />
 
-      <motion.div
-        className="fixed w-[400px] h-[400px] rounded-full pointer-events-none z-0 blur-3xl opacity-25"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 80, 0],
-          scale: [1, 1.4, 1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
-          left: "15%",
-          bottom: "15%",
-        }}
-      />
-
-      {/* Additional floating orbs for more movement */}
-      <motion.div
-        className="fixed w-[300px] h-[300px] rounded-full pointer-events-none z-0 blur-3xl opacity-15"
-        animate={{
-          x: [0, 120, 0],
-          y: [0, -120, 0],
-          scale: [1, 1.5, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)",
-          left: "40%",
-          top: "60%",
-        }}
-      />
-
-      <motion.div
-        className="fixed w-[350px] h-[350px] rounded-full pointer-events-none z-0 blur-3xl opacity-20"
-        animate={{
-          x: [0, -90, 0],
-          y: [0, 90, 0],
-          scale: [1, 1.3, 1],
-          rotate: [360, 180, 0],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: "radial-gradient(circle, rgba(217,70,239,0.3) 0%, transparent 70%)",
-          right: "30%",
-          bottom: "30%",
-        }}
-      />
-
-      {/* Floating particles */}
-      {[...Array(5)].map((_, i) => (
+      {FLOATING_ORBS.map((orb, index) => (
         <motion.div
-          key={i}
-          className="fixed w-2 h-2 rounded-full pointer-events-none z-0"
+          key={index}
+          className="fixed rounded-full pointer-events-none z-0 blur-3xl opacity-30"
           style={{
-            background: "rgba(139,92,246,0.6)",
-            left: `${20 + i * 15}%`,
-            top: `${30 + i * 10}%`,
+            width: `${orb.size}px`,
+            height: `${orb.size}px`,
+            background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
+            ...orb.position,
           }}
-          animate={{
-            y: [0, -100, 0],
-            opacity: [0.2, 0.8, 0.2],
-          }}
+          animate={orb.animate}
           transition={{
-            duration: 5 + i,
+            duration: orb.duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: i * 0.5,
+            delay: orb.delay,
           }}
         />
       ))}
+
+      {/* Aurora sweep */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none z-0 mix-blend-screen opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(125deg, rgba(167,139,250,0.25), rgba(236,72,153,0.15), rgba(167,139,250,0.25))",
+          backgroundSize: "300% 300%",
+        }}
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Floating particles */}
+      {PARTICLE_CONFIGS.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="fixed w-2 h-2 rounded-full pointer-events-none z-0"
+          style={{
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            background: "rgba(236,72,153,0.6)",
+            left: particle.left,
+            top: particle.top,
+          }}
+          animate={{
+            y: [0, -80, 40, 0],
+            opacity: [0.1, 0.8, 0.1],
+            scale: [0.8, 1.2, 0.8],
+          }}
+          transition={{
+            duration: 6 + (particle.id % 5),
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: particle.delay,
+          }}
+        />
+      ))}
+
+      {/* Rotating gradient beam */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none z-0 opacity-35 blur-[140px]"
+        style={{
+          background:
+            "conic-gradient(from 90deg at 50% 50%, rgba(147,51,234,0.25), rgba(236,72,153,0.25), rgba(147,51,234,0.25))",
+        }}
+        animate={{
+          rotate: [0, 15, -10, 0],
+          opacity: [0.2, 0.35, 0.2],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Cursor-reveal texture layer */}
       <motion.div

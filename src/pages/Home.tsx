@@ -6,26 +6,28 @@ import { Navigation } from "@/components/Navigation";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 
+const TYPEWRITER_PREFIX = "I ";
 const TYPEWRITER_PHRASES = [
-  "shipping infrastructure that refuses to fail",
-  "designing agentic systems with teeth",
-  "reducing GPU waste one cluster at a time",
-  "writing code that sounds like me",
-] as const;
-
-const TICKER_ITEMS = [
-  "Agentic orchestration",
-  "Compute economics",
-  "Decentralized inference",
-  "GPU scheduling",
-  "Infra storytelling",
-  "Zero-fluff shipping",
-] as const;
-
-const FLOATING_STATS = [
-  { label: "Latency budget", value: "< 50ms or bust", accent: "text-emerald-300" },
-  { label: "Shipped systems", value: "12 prod stacks", accent: "text-violet-300" },
-  { label: "Weekly commits", value: "150+ pushes", accent: "text-fuchsia-300" },
+  "think in systems.",
+  "build tools that reduce friction, not add it.",
+  "care about clarity more than theatrics.",
+  "chase problems worth solving.",
+  "prefer signal over noise.",
+  "build things that survive real constraints.",
+  "like projects that force me to think.",
+  "design for the edge cases everyone forgets.",
+  "keep my work honest.",
+  "choose precision when it matters.",
+  "build because leaving things broken annoys me.",
+  "focus on what scales, not what trends.",
+  "don't overcomplicate. I refine.",
+  "care about mechanisms, not marketing.",
+  "prefer real results over clever wording.",
+  "solve problems that people only notice once they disappear.",
+  "build things that hold up under pressure.",
+  "think better when the stakes are high.",
+  "build responsibly. Power without restraint is useless.",
+  "work at the intersection of logic and discipline.",
 ] as const;
 
 export default function Home() {
@@ -130,7 +132,7 @@ export default function Home() {
               </p> */}
               <div className="font-mono text-emerald-300 text-xl flex items-center gap-2">
                 <span className="opacity-50">▹</span>
-                <span>{displayText}</span>
+                <span>{TYPEWRITER_PREFIX}{displayText}</span>
                 <motion.span
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
