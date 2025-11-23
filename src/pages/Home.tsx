@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 import { Link } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const TYPEWRITER_PREFIX = "I ";
 const TYPEWRITER_PHRASES = [
@@ -13,6 +13,7 @@ const TYPEWRITER_PHRASES = [
   "like projects that force me to think.",
   "design for the edge cases everyone forgets.",
   "keep my work honest.",
+  "love learning new things.",
   "build because leaving things broken annoys me.",
   "focus on what scales, not what trends.",
   "think you're awesome.",
@@ -25,9 +26,22 @@ export default function Home() {
   const [displayText, setDisplayText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const shuffledOrder = useRef<number[]>([]);
 
   useEffect(() => {
-    const currentPhrase = TYPEWRITER_PHRASES[phraseIndex];
+    shuffledOrder.current = shuffleIndices(TYPEWRITER_PHRASES.length);
+  }, []);
+
+  const currentPhrase = useMemo(() => {
+    const order = shuffledOrder.current;
+    if (!order.length) {
+      order.push(...shuffleIndices(TYPEWRITER_PHRASES.length));
+    }
+    const idx = order[phraseIndex % order.length];
+    return TYPEWRITER_PHRASES[idx];
+  }, [phraseIndex]);
+
+  useEffect(() => {
     if (!currentPhrase) return;
 
     if (!isDeleting && displayText === currentPhrase) {
@@ -38,7 +52,14 @@ export default function Home() {
     if (isDeleting && displayText === "") {
       const next = setTimeout(() => {
         setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+        setPhraseIndex((prev) => {
+          const order = shuffledOrder.current;
+          const nextIndex = (prev + 1) % order.length;
+          if (nextIndex === 0) {
+            shuffledOrder.current = shuffleIndices(TYPEWRITER_PHRASES.length);
+          }
+          return nextIndex;
+        });
       }, 200);
       return () => clearTimeout(next);
     }
@@ -49,7 +70,16 @@ export default function Home() {
     }, isDeleting ? 45 : 95);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, phraseIndex]);
+  }, [displayText, isDeleting, phraseIndex, currentPhrase]);
+
+function shuffleIndices(length: number) {
+  const indices = Array.from({ length }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return indices;
+}
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">

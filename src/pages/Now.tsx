@@ -4,6 +4,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 
+const GPUNITY_URL = "https://sustaineo-page.vercel.app/";
+
+const withGPUnityLink = (text: string) =>
+  text.split(/(GPUnity)/g).map((part, index) =>
+    part === "GPUnity" ? (
+      <a
+        key={`gpunity-${index}-${text}`}
+        href={GPUNITY_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+
 const accents = [
   {
     iconWrap: "bg-violet-600/20 text-violet-300",
@@ -33,39 +52,40 @@ export default function Now() {
       icon: Code,
       title: "Building",
       items: [
-        "GPUnity - Architecture for sustainable infrastructure",
-        "Agentic systems with MCP integration",
-        "GPU scheduling optimization tools",
+        "GPUnity: automatically recommends, provisions, and manages compute",
+        "A pricing + availability engine for multi-cloud GPU markets",
+        "Agentic workflows powered by MCP for infra automation"
       ],
     },
     {
       icon: Brain,
       title: "Exploring",
       items: [
-        "Decentralized inference patterns",
-        "Model Context Protocol implementations",
-        "Compute orchestration at scale",
+        "Unified abstractions for heterogeneous compute (CUDA, ROCm, TPU)",
+        "Autonomous agents that can provision, benchmark, and migrate workloads",
+        "Patterns for reducing inference cost without killing performance"
       ],
     },
     {
       icon: BookOpen,
       title: "Learning",
       items: [
-        "Advanced data structures & algorithms",
-        "Distributed systems design",
-        "Systems programming in Rust",
+        "Systems-level design for large-scale compute",
+        "Runtime scheduling strategies and kernel-level bottlenecks",
+        "Compiler-driven optimizations in ML workloads"
       ],
     },
     {
       icon: Wrench,
       title: "Problems I'm Thinking About",
       items: [
-        "How to make AI inference actually affordable",
-        "Better metrics for multilingual LLM evaluation",
-        "Why most compute orchestration is broken",
+        "How to elastically move workloads between providers without downtime",
+        "How to model GPU markets with real price volatility",
+        "Why infra teams keep reinventing the same broken orchestration stack"
       ],
     },
   ];
+  
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -137,20 +157,20 @@ export default function Now() {
                               initial={{ opacity: 0, x: -8 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 + itemIdx * 0.08 }}
-                              whileHover={{ x: 6 }}
+                              whileHover={{ x: 6, transition: { duration: 0.12 } }}
                               className="text-lg text-gray-300 flex items-start gap-3"
                             >
                               <motion.span
                                 className="mt-1 text-violet-200"
                                 animate={{ opacity: [0.5, 1, 0.5] }}
                                 transition={{ duration: 2, repeat: Infinity, delay: itemIdx * 0.2 }}
-                                whileHover={{ rotate: 90, scale: 1.1 }}
+                                whileHover={{ rotate: 90, scale: 1.1, transition: { duration: 0.1 } }}
                               >
                                 →
                               </motion.span>
                               <span className="relative">
-                                {item}
-                                <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
+                                {withGPUnityLink(item)}
+                                <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-150 group-hover:opacity-80" />
                               </span>
                             </motion.li>
                           ))}

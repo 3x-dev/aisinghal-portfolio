@@ -3,6 +3,25 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 
+const GPUNITY_URL = "https://sustaineo-page.vercel.app/";
+
+const withGPUnityLink = (text: string) =>
+  text.split(/(GPUnity)/g).map((part, index) =>
+    part === "GPUnity" ? (
+      <a
+        key={`about-gpunity-${index}-${text}`}
+        href={GPUNITY_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+
 const timelineItemVariants = {
   hidden: { opacity: 0, x: -30 },
   visible: (index: number) => ({
@@ -96,9 +115,9 @@ export default function About() {
                     I'm a freshman at Purdue studying Computer Science. I build infrastructure and AI systems.
                   </p>
                   <p>
-                    Currently working on my startup,<span className="text-violet-400 font-semibold">GPUnity</span>, 
-                    a startup focused on sustainable compute infrastructure. I'm exploring agentic architectures, 
-                    GPU scheduling optimization, and decentralized inference patterns.
+                    {withGPUnityLink(
+                      "Currently working on my startup, GPUnity, a startup focused on sustainable compute infrastructure. I'm exploring agentic architectures, GPU scheduling optimization, and decentralized inference patterns."
+                    )}
                   </p>
                   <p>
                     My interests sit at the intersection of <span className="text-emerald-400 font-semibold">intelligence</span>, 
@@ -148,7 +167,7 @@ export default function About() {
                     <div className="text-violet-300 font-mono text-sm mb-2 tracking-[0.25em]">
                       {item.period}
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2">{withGPUnityLink(item.title)}</h3>
                     <p className="text-gray-400 text-lg leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>

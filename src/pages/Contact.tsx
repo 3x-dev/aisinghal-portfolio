@@ -95,7 +95,7 @@ export default function Contact() {
                     <motion.div className="w-full flex justify-center" {...hoverMotion}>
                       <Button
                         size="lg"
-                        className="relative w-full max-w-xl overflow-hidden group bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg py-6 justify-center"
+                        className="relative w-full max-w-xl overflow-hidden group bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg py-6 justify-center rounded-2xl border border-violet-400/40 shadow-[0_15px_40px_rgba(124,58,237,0.35)]"
                         asChild
                       >
                         <a
