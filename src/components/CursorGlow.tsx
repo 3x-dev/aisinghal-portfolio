@@ -59,14 +59,15 @@ export function CursorGlow() {
         className="pointer-events-none fixed z-[100] mix-blend-screen"
         style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-24 w-24 rounded-full bg-violet-600/30 blur-[40px]" />
+        <div className="h-20 w-20 rounded-full bg-violet-600/30 blur-[32px]" />
       </motion.div>
       <motion.div
         className="pointer-events-none fixed z-[101]"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-3 w-3 rounded-full bg-violet-400 shadow-[0_0_15px_rgba(167,139,250,0.9)]" />
+        <div className="h-2.5 w-2.5 rounded-full bg-violet-400 shadow-[0_0_15px_rgba(167,139,250,0.9)]" />
       </motion.div>
     </>
   );
 }
+

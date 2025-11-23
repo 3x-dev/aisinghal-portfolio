@@ -7,6 +7,7 @@ import { ConvexReactClient } from "convex/react";
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import Lenis from "lenis";
 import "./index.css";
 import Home from "./pages/Home.tsx";
 import Now from "./pages/Now.tsx";
@@ -45,8 +46,67 @@ function RouteSyncer() {
 
   return null;
 }
+ 
+function SmoothScrollController() {
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lenis: Lenis | null = null;
+    let rafId: number | null = null;
 
+    const startLenis = () => {
+      if (lenis) return;
 
+      lenis = new Lenis({
+        duration: 1.05,
+        smoothWheel: true,
+        gestureOrientation: "vertical",
+        normalizeWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.2,
+      });
+
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+
+      rafId = requestAnimationFrame(raf);
+    };
+
+    const stopLenis = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (lenis) {
+        lenis.destroy();
+        lenis = null;
+      }
+    };
+
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        stopLenis();
+      } else {
+        startLenis();
+      }
+    };
+
+    if (!mediaQuery.matches) {
+      startLenis();
+    }
+
+    mediaQuery.addEventListener("change", handleMotionChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMotionChange);
+      stopLenis();
+    };
+  }, []);
+
+  return null;
+}
+ 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <VlyToolbar />
@@ -54,6 +114,7 @@ createRoot(document.getElementById("root")!).render(
       <ConvexAuthProvider client={convex}>
         <BrowserRouter>
           <CursorGlow />
+          <SmoothScrollController />
           <RouteSyncer />
           <Routes>
             <Route path="/" element={<Home />} />
