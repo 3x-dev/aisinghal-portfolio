@@ -134,6 +134,28 @@ export function AnimatedBackground() {
         />
       ))}
 
+      {/* Cursor-reveal texture layer */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 opacity-30 mix-blend-screen"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px)",
+          backgroundSize: "140px 140px",
+          maskImage: `radial-gradient(420px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,1) 0%, transparent 70%)`,
+          WebkitMaskImage: `radial-gradient(420px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,1) 0%, transparent 70%)`,
+        }}
+      />
+
+      {/* Luminescent spotlight following the cursor */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.16), transparent 55%)`,
+        }}
+        animate={{ opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       {/* Grid pattern overlay with subtle animation */}
       <motion.div 
         className="fixed inset-0 bg-grid-pattern pointer-events-none z-0"

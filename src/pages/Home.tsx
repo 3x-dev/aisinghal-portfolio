@@ -25,6 +25,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              className="text-lg md:text-xl tracking-[0.35em] uppercase text-emerald-300 mb-4"
+            >
+              Hey there, I'm
+            </motion.p>
             <h1 className="text-8xl md:text-9xl font-black mb-8 leading-none">
               <motion.span
                 className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent"
