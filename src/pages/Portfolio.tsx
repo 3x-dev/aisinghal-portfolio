@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink, Terminal, Zap, Coffee } from "lucide-react";
+import { Github, Linkedin, Mail, Terminal, Zap, Coffee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

@@ -14,10 +14,10 @@ import {
   Share2,
   Flame,
   GitBranch,
-  Terminal,
   Cloud,
   Zap,
   Layers,
+  Network,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -34,7 +34,16 @@ const techIconMap: Record<string, ReactNode> = {
   PostgreSQL: <Database className="h-3.5 w-3.5" />,
   PyTorch: <Flame className="h-3.5 w-3.5" />,
   NetworkX: <GitBranch className="h-3.5 w-3.5" />,
-  Python: <Terminal className="h-3.5 w-3.5" />,
+  Python: (
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+      alt="Python"
+      className="h-3.5 w-3.5"
+    />
+  ),
+  LangChain: <Layers className="h-3.5 w-3.5" />,
+  GCP: <Cloud className="h-3.5 w-3.5" />,
+  "Distributed Systems": <Network className="h-3.5 w-3.5" />,
   TensorFlow: <Cpu className="h-3.5 w-3.5" />,
   OpenCV: <Layers className="h-3.5 w-3.5" />,
   Transformers: <Sparkles className="h-3.5 w-3.5" />,
@@ -124,7 +133,7 @@ export default function Projects() {
         "Built an agentic GPU orchestration layer that reads a repo, infers compute needs, and provisions jobs across cloud GPU providers based on a target budget and deadline, using natural language as the interface instead of cloud dashboards.",
       learned:
         "Got deep into cloud APIs, async job lifecycles, and the messy edges of GPU pricing, which forced me to think about orchestration, observability, and failure modes instead of just model code.",
-      tech: ["Python", "LangChain", "Docker", "AWS", "Kubernetes"],
+      tech: ["Python", "LangChain", "AWS", "GCP", "Distributed Systems", "PostgreSQL"],
       featured: true,
       github: DEFAULT_CODE_URL,
     },
@@ -338,20 +347,22 @@ export default function Projects() {
                               </motion.a>
                             </Button>
                           )}
-                          <Button
-                            variant="outline"
-                            className="border-violet-500 text-violet-200 transition-all duration-150 hover:-translate-y-0.5 hover:bg-violet-500/20"
-                            asChild
-                          >
-                            <a
-                              href={codeLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                          {!["GPUnity (in progress)", "Temporal GNN for Reddit Polarization", "Hate Speech Ensemble Model"].includes(project.title) && (
+                            <Button
+                              variant="outline"
+                              className="border-violet-500 text-violet-200 transition-all duration-150 hover:-translate-y-0.5 hover:bg-violet-500/20"
+                              asChild
                             >
-                              <Github className="mr-2 h-4 w-4" />
-                              View Code
-                            </a>
-                          </Button>
+                              <a
+                                href={codeLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Github className="mr-2 h-4 w-4" />
+                                View Code
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
