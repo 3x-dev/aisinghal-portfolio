@@ -17,6 +17,7 @@ import PastWork from "./pages/PastWork.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
+import { CursorGlow } from "@/components/CursorGlow.tsx";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
@@ -52,6 +53,7 @@ createRoot(document.getElementById("root")!).render(
     <InstrumentationProvider>
       <ConvexAuthProvider client={convex}>
         <BrowserRouter>
+          <CursorGlow />
           <RouteSyncer />
           <Routes>
             <Route path="/" element={<Home />} />

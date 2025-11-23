@@ -4,8 +4,60 @@ import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
+
+const TYPEWRITER_PHRASES = [
+  "shipping infrastructure that refuses to fail",
+  "designing agentic systems with teeth",
+  "reducing GPU waste one cluster at a time",
+  "writing code that sounds like me",
+] as const;
+
+const TICKER_ITEMS = [
+  "Agentic orchestration",
+  "Compute economics",
+  "Decentralized inference",
+  "GPU scheduling",
+  "Infra storytelling",
+  "Zero-fluff shipping",
+] as const;
+
+const FLOATING_STATS = [
+  { label: "Latency budget", value: "< 50ms or bust", accent: "text-emerald-300" },
+  { label: "Shipped systems", value: "12 prod stacks", accent: "text-violet-300" },
+  { label: "Weekly commits", value: "150+ pushes", accent: "text-fuchsia-300" },
+] as const;
 
 export default function Home() {
+  const [displayText, setDisplayText] = useState("");
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentPhrase = TYPEWRITER_PHRASES[phraseIndex];
+    if (!currentPhrase) return;
+
+    if (!isDeleting && displayText === currentPhrase) {
+      const hold = setTimeout(() => setIsDeleting(true), 1200);
+      return () => clearTimeout(hold);
+    }
+
+    if (isDeleting && displayText === "") {
+      const next = setTimeout(() => {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+      }, 200);
+      return () => clearTimeout(next);
+    }
+
+    const timeout = setTimeout(() => {
+      const nextLength = displayText.length + (isDeleting ? -1 : 1);
+      setDisplayText(currentPhrase.slice(0, nextLength));
+    }, isDeleting ? 45 : 95);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, phraseIndex]);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Bottom gradient to prevent white space */}
@@ -76,6 +128,17 @@ export default function Home() {
               <p className="text-lg text-violet-400 font-semibold">
                 Freshman who ships like a senior.
               </p>
+              <div className="font-mono text-emerald-300 text-xl flex items-center gap-2">
+                <span className="opacity-50">▹</span>
+                <span>{displayText}</span>
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="text-emerald-200"
+                >
+                  |
+                </motion.span>
+              </div>
             </motion.div>
 
             <motion.div
@@ -111,7 +174,33 @@ export default function Home() {
                 <Link to="/contact">Get In Touch</Link>
               </Button>
             </motion.div>
+            <div className="mt-14 overflow-hidden rounded-full border border-zinc-800/60 bg-black/30">
+              <motion.div
+                className="flex gap-6 py-4 whitespace-nowrap text-sm uppercase tracking-[0.3em]"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+              >
+                {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+                  <span key={`${item}-${idx}`} className="text-gray-400">
+                    {item}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
+          <div className="hidden xl:flex flex-col gap-4 absolute -right-64 top-1/2 -translate-y-1/2">
+            {FLOATING_STATS.map((stat, idx) => (
+              <motion.div
+                key={stat.label}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4 + idx, repeat: Infinity, ease: "easeInOut" }}
+                className="rounded-3xl border border-zinc-800/70 bg-black/40 px-6 py-4 backdrop-blur-md"
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-500">{stat.label}</p>
+                <p className={`text-2xl font-bold ${stat.accent}`}>{stat.value}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>

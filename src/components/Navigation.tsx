@@ -9,7 +9,6 @@ export function Navigation() {
     { path: "/", label: "Home" },
     { path: "/now", label: "Now" },
     { path: "/projects", label: "Projects" },
-    { path: "/thinking", label: "Thinking" },
     { path: "/about", label: "About" },
     { path: "/past-work", label: "Past Work" },
     { path: "/contact", label: "Contact" },
