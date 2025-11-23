@@ -119,15 +119,15 @@ export default function Home() {
               className="space-y-6 mb-12"
             >
               <p className="text-3xl font-bold text-gray-300">
-                Purdue CS. Builder. Infrastructure engineer.
+                Full Stack Developer | AI/ML Engineer
               </p>
               <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
                 I build systems that scale. Currently working on Sustaineo and exploring 
                 agentic architectures, GPU scheduling, and decentralized inference.
               </p>
-              <p className="text-lg text-violet-400 font-semibold">
-                Freshman who ships like a senior.
-              </p>
+              {/* <p className="text-lg text-violet-400 font-semibold">
+                Learn more about me
+              </p> */}
               <div className="font-mono text-emerald-300 text-xl flex items-center gap-2">
                 <span className="opacity-50">▹</span>
                 <span>{displayText}</span>
