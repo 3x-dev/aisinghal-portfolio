@@ -174,33 +174,7 @@ export default function Home() {
                 <Link to="/contact">Get In Touch</Link>
               </Button>
             </motion.div>
-            <div className="mt-14 overflow-hidden rounded-full border border-zinc-800/60 bg-black/30">
-              <motion.div
-                className="flex gap-6 py-4 whitespace-nowrap text-sm uppercase tracking-[0.3em]"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-              >
-                {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
-                  <span key={`${item}-${idx}`} className="text-gray-400">
-                    {item}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
           </motion.div>
-          <div className="hidden xl:flex flex-col gap-4 absolute -right-64 top-1/2 -translate-y-1/2">
-            {FLOATING_STATS.map((stat, idx) => (
-              <motion.div
-                key={stat.label}
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 4 + idx, repeat: Infinity, ease: "easeInOut" }}
-                className="rounded-3xl border border-zinc-800/70 bg-black/40 px-6 py-4 backdrop-blur-md"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-500">{stat.label}</p>
-                <p className={`text-2xl font-bold ${stat.accent}`}>{stat.value}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </motion.div>
     </div>

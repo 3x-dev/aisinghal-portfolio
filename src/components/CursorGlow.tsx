@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export function CursorGlow() {
   const [isPointer, setIsPointer] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const baseX = useMotionValue(-100);
   const baseY = useMotionValue(-100);
 
@@ -14,7 +15,9 @@ export function CursorGlow() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: fine)");
     const update = (event?: MediaQueryListEvent) => {
-      setIsPointer(event ? event.matches : mediaQuery.matches);
+      const matches = event ? event.matches : mediaQuery.matches;
+      setIsPointer(matches);
+      setIsActive(matches);
     };
 
     update();
@@ -25,14 +28,28 @@ export function CursorGlow() {
   useEffect(() => {
     if (!isPointer) return;
     const handleMove = (event: PointerEvent) => {
+      setIsActive(true);
       baseX.set(event.clientX);
       baseY.set(event.clientY);
     };
+    const handleEnter = () => setIsActive(true);
+    const handleLeave = () => {
+      setIsActive(false);
+      baseX.set(-100);
+      baseY.set(-100);
+    };
+
     window.addEventListener("pointermove", handleMove);
-    return () => window.removeEventListener("pointermove", handleMove);
+    window.addEventListener("pointerenter", handleEnter);
+    window.addEventListener("pointerleave", handleLeave);
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerenter", handleEnter);
+      window.removeEventListener("pointerleave", handleLeave);
+    };
   }, [isPointer, baseX, baseY]);
 
-  if (!isPointer) return null;
+  if (!isPointer || !isActive) return null;
 
   return (
     <>
@@ -40,13 +57,13 @@ export function CursorGlow() {
         className="pointer-events-none fixed z-[100] mix-blend-screen"
         style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-14 w-14 rounded-full border border-violet-400/40 bg-violet-500/15 blur-xl backdrop-blur-md" />
+        <div className="h-16 w-16 rounded-full border border-violet-400/30 bg-gradient-to-br from-violet-500/25 via-fuchsia-500/20 to-indigo-500/15 blur-[60px] backdrop-blur-xl" />
       </motion.div>
       <motion.div
         className="pointer-events-none fixed z-[101]"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-3 w-3 rounded-full bg-white shadow-[0_0_25px_rgba(168,85,247,0.75)]" />
+        <div className="h-3 w-3 rounded-full border border-white/40 bg-gradient-to-br from-fuchsia-200 to-violet-300 shadow-[0_0_25px_rgba(168,85,247,0.85)]" />
       </motion.div>
     </>
   );
