@@ -4,48 +4,50 @@ import { useEffect, useState } from "react";
 export function CursorGlow() {
   const [isPointer, setIsPointer] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const baseX = useMotionValue(-100);
-  const baseY = useMotionValue(-100);
+  const baseX = useMotionValue(0);
+  const baseY = useMotionValue(0);
 
-  const glowX = useSpring(baseX, { stiffness: 120, damping: 18, mass: 0.5 });
-  const glowY = useSpring(baseY, { stiffness: 120, damping: 18, mass: 0.5 });
-  const dotX = useSpring(baseX, { stiffness: 400, damping: 25, mass: 0.7 });
-  const dotY = useSpring(baseY, { stiffness: 400, damping: 25, mass: 0.7 });
+  // Smoother spring configuration
+  const springConfig = { stiffness: 500, damping: 28, mass: 0.5 };
+  const glowX = useSpring(baseX, { stiffness: 150, damping: 20, mass: 0.8 });
+  const glowY = useSpring(baseY, { stiffness: 150, damping: 20, mass: 0.8 });
+  const dotX = useSpring(baseX, springConfig);
+  const dotY = useSpring(baseY, springConfig);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(pointer: fine)");
-    const update = (event?: MediaQueryListEvent) => {
-      const matches = event ? event.matches : mediaQuery.matches;
-      setIsPointer(matches);
-      setIsActive(matches);
+    const update = () => {
+      setIsPointer(window.matchMedia("(pointer: fine)").matches);
     };
-
     update();
-    mediaQuery.addEventListener("change", update);
-    return () => mediaQuery.removeEventListener("change", update);
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   useEffect(() => {
     if (!isPointer) return;
-    const handleMove = (event: PointerEvent) => {
+
+    const handleMove = (e: MouseEvent) => {
       setIsActive(true);
-      baseX.set(event.clientX);
-      baseY.set(event.clientY);
-    };
-    const handleEnter = () => setIsActive(true);
-    const handleLeave = () => {
-      setIsActive(false);
-      baseX.set(-100);
-      baseY.set(-100);
+      baseX.set(e.clientX);
+      baseY.set(e.clientY);
     };
 
-    window.addEventListener("pointermove", handleMove);
-    window.addEventListener("pointerenter", handleEnter);
-    window.addEventListener("pointerleave", handleLeave);
+    const handleLeave = () => {
+      setIsActive(false);
+    };
+
+    const handleEnter = () => {
+      setIsActive(true);
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    document.addEventListener("mouseleave", handleLeave);
+    document.addEventListener("mouseenter", handleEnter);
+
     return () => {
-      window.removeEventListener("pointermove", handleMove);
-      window.removeEventListener("pointerenter", handleEnter);
-      window.removeEventListener("pointerleave", handleLeave);
+      window.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseleave", handleLeave);
+      document.removeEventListener("mouseenter", handleEnter);
     };
   }, [isPointer, baseX, baseY]);
 
@@ -57,13 +59,13 @@ export function CursorGlow() {
         className="pointer-events-none fixed z-[100] mix-blend-screen"
         style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-16 w-16 rounded-full border border-violet-400/30 bg-gradient-to-br from-violet-500/25 via-fuchsia-500/20 to-indigo-500/15 blur-[60px] backdrop-blur-xl" />
+        <div className="h-24 w-24 rounded-full bg-violet-600/30 blur-[40px]" />
       </motion.div>
       <motion.div
         className="pointer-events-none fixed z-[101]"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
       >
-        <div className="h-3 w-3 rounded-full border border-white/40 bg-gradient-to-br from-fuchsia-200 to-violet-300 shadow-[0_0_25px_rgba(168,85,247,0.85)]" />
+        <div className="h-3 w-3 rounded-full bg-violet-400 shadow-[0_0_15px_rgba(167,139,250,0.9)]" />
       </motion.div>
     </>
   );
