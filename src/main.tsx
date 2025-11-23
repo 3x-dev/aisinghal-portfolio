@@ -60,7 +60,6 @@ function SmoothScrollController() {
         duration: 1.05,
         smoothWheel: true,
         gestureOrientation: "vertical",
-        normalizeWheel: true,
         wheelMultiplier: 0.9,
         touchMultiplier: 1.2,
       });
