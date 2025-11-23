@@ -1,26 +1,42 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { useEffect } from "react";
 
 export function AnimatedBackground() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
+
+  // Create motion templates for complex style strings
+  const orb1Left = useMotionTemplate`${mouseX}px`;
+  const orb1Top = useMotionTemplate`${mouseY}px`;
+  
+  // We need to offset the position for the center of the orb (300px radius)
+  // Since we can't easily do math in the template string with the motion value directly for the calc,
+  // we'll use a transform to center it, or just accept the slight offset/lag which is fine for background.
+  // Better approach: use a transform translate to center it.
+  
+  const maskImage = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(0,0,0,1) 0%, transparent 70%)`;
+  const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.16), transparent 55%)`;
 
   return (
-    <>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Animated gradient orbs */}
       <motion.div
         className="fixed w-[600px] h-[600px] rounded-full pointer-events-none z-0 blur-3xl opacity-30"
         style={{
           background: "radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)",
-          left: mousePosition.x - 300,
-          top: mousePosition.y - 300,
+          left: orb1Left,
+          top: orb1Top,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
         animate={{
           scale: [1, 1.2, 1],
@@ -135,14 +151,14 @@ export function AnimatedBackground() {
       ))}
 
       {/* Cursor-reveal texture layer */}
-      <div
+      <motion.div
         className="fixed inset-0 pointer-events-none z-0 opacity-30 mix-blend-screen"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px)",
           backgroundSize: "140px 140px",
-          maskImage: `radial-gradient(420px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,1) 0%, transparent 70%)`,
-          WebkitMaskImage: `radial-gradient(420px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,1) 0%, transparent 70%)`,
+          maskImage: maskImage,
+          WebkitMaskImage: maskImage,
         }}
       />
 
@@ -150,7 +166,7 @@ export function AnimatedBackground() {
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.16), transparent 55%)`,
+          background: spotlightBackground,
         }}
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -168,6 +184,6 @@ export function AnimatedBackground() {
           ease: "easeInOut",
         }}
       />
-    </>
+    </div>
   );
 }
