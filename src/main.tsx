@@ -4,6 +4,7 @@ import { InstrumentationProvider } from "@/instrumentation.tsx";
 import AuthPage from "@/pages/Auth.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
+import { AnimatePresence } from "framer-motion";
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
@@ -19,6 +20,7 @@ import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { CursorGlow } from "@/components/CursorGlow.tsx";
+import { PageTransition, RouteTransitionOverlay } from "@/components/PageTransition.tsx";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
@@ -105,6 +107,89 @@ function SmoothScrollController() {
 
   return null;
 }
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false} presenceAffectsLayout={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageTransition>
+              <Home />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/now"
+          element={
+            <PageTransition>
+              <Now />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <PageTransition>
+              <Projects />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/thinking"
+          element={
+            <PageTransition>
+              <Thinking />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PageTransition>
+              <About />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/past-work"
+          element={
+            <PageTransition>
+              <PastWork />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageTransition>
+              <Contact />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+            <PageTransition>
+              <AuthPage redirectAfterAuth="/" />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PageTransition>
+              <NotFound />
+            </PageTransition>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
  
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -115,17 +200,8 @@ createRoot(document.getElementById("root")!).render(
           <CursorGlow />
           <SmoothScrollController />
           <RouteSyncer />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/now" element={<Now />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/thinking" element={<Thinking />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/past-work" element={<PastWork />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <RouteTransitionOverlay />
+          <AnimatedRoutes />
         </BrowserRouter>
         <Toaster />
       </ConvexAuthProvider>

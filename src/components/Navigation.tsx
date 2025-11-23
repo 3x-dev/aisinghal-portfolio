@@ -5,46 +5,55 @@ import { Button } from "@/components/ui/button";
 
 export function Navigation() {
   const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
+  const [navOpacity, setNavOpacity] = useState(1);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    const FADE_DISTANCE = 240;
+    const MIN_OPACITY = 0.35;
+    let frameId = 0;
 
-    const handleScroll = () => {
+    const updateMetrics = () => {
       const currentY = window.scrollY;
-      const delta = currentY - lastScrollY;
-
       setIsScrolled(currentY > 8);
 
-      if (currentY <= 0) {
-        setIsVisible(true);
-      } else if (delta > 6) {
-        setIsVisible(false);
-      } else if (delta < -6) {
-        setIsVisible(true);
-      }
+      const progress = Math.min(Math.max(currentY / FADE_DISTANCE, 0), 1);
+      const opacity = 1 - progress * (1 - MIN_OPACITY);
 
-      lastScrollY = currentY;
+      setNavOpacity(Number(opacity.toFixed(3)));
+      frameId = 0;
     };
 
+    const handleScroll = () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+      frameId = requestAnimationFrame(updateMetrics);
+    };
+
+    updateMetrics();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
   
   const links = [
     { path: "/", label: "Home" },
     { path: "/now", label: "Now" },
     { path: "/projects", label: "Projects" },
-    { path: "/about", label: "About" },
     { path: "/past-work", label: "Past Work" },
+    { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ];
 
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
-      animate={{ y: isVisible ? 0 : -40, opacity: isVisible ? 1 : 0 }}
+      animate={{ y: 0, opacity: navOpacity }}
       transition={{ duration: 0.35, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 transition-[background-color,opacity] duration-300 ${
         isScrolled ? "bg-black/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.45)]" : "bg-black/40 backdrop-blur-md"

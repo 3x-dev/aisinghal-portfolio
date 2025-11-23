@@ -8,26 +8,17 @@ import { useEffect, useState } from "react";
 
 const TYPEWRITER_PREFIX = "I ";
 const TYPEWRITER_PHRASES = [
-  "think in systems.",
-  "build tools that reduce friction, not add it.",
-  "care about clarity more than theatrics.",
-  "chase problems worth solving.",
-  "prefer signal over noise.",
+  "love chasing problems worth solving.",
   "build things that survive real constraints.",
   "like projects that force me to think.",
   "design for the edge cases everyone forgets.",
   "keep my work honest.",
-  "choose precision when it matters.",
   "build because leaving things broken annoys me.",
   "focus on what scales, not what trends.",
-  "don't overcomplicate. I refine.",
-  "care about mechanisms, not marketing.",
-  "prefer real results over clever wording.",
+  "think you're awesome.",
+  "hate overcomplicating things.",
   "solve problems that people only notice once they disappear.",
-  "build things that hold up under pressure.",
   "think better when the stakes are high.",
-  "build responsibly. Power without restraint is useless.",
-  "work at the intersection of logic and discipline.",
 ] as const;
 
 export default function Home() {
@@ -83,7 +74,7 @@ export default function Home() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="text-lg md:text-xl tracking-[0.35em] uppercase text-emerald-300 mb-4"
+              className="text-lg md:text-xl tracking-[0.35em] uppercase text-[#b29bff] mb-4"
             >
               Hey there, I'm
             </motion.p>
@@ -124,19 +115,30 @@ export default function Home() {
                 Full Stack Developer | AI/ML Engineer
               </p>
               <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
-                I build systems that scale. Currently working on Sustaineo and exploring 
-                agentic architectures, GPU scheduling, and decentralized inference.
+                I build systems that scale. Currently working on my startup,{" "}
+                <a
+                  href="https://sustaineo-page.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+                >
+                  GPUnity
+                </a>
+                , and exploring agentic architectures and decentralized inference patterns.
               </p>
               {/* <p className="text-lg text-violet-400 font-semibold">
                 Learn more about me
               </p> */}
-              <div className="font-mono text-emerald-300 text-xl flex items-center gap-2">
-                <span className="opacity-50">▹</span>
-                <span>{TYPEWRITER_PREFIX}{displayText}</span>
+              <div className="font-mono text-xl flex items-center gap-2">
+                <span className="text-purple-400/70">▹</span>
+                <span className="bg-gradient-to-r from-[#4c1d95] via-[#6d28d9] to-[#a855f7] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(122,45,197,0.4)]">
+                  {TYPEWRITER_PREFIX}
+                  {displayText}
+                </span>
                 <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
+                  animate={{ opacity: [0.25, 1, 0.25] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="text-emerald-200"
+                  className="text-[#c084fc]"
                 >
                   |
                 </motion.span>
@@ -149,32 +151,89 @@ export default function Home() {
               transition={{ delay: 1 }}
               className="flex flex-wrap gap-4"
             >
-              <Button
-                size="lg"
-                className="bg-violet-600 hover:bg-violet-700 text-white font-bold group"
-                asChild
+              <motion.div
+                whileHover={{
+                  y: -6,
+                  scale: 1.03,
+                  boxShadow: "0 25px 55px rgba(58, 16, 94, 0.6)",
+                }}
+                whileTap={{ scale: 0.97, y: -2 }}
+                transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                className="rounded-2xl"
               >
-                <Link to="/projects">
-                  See What I Build
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-violet-600 text-violet-400 hover:bg-violet-600/30 hover:text-violet-200 hover:border-violet-400 transition-all"
-                asChild
+                <Button
+                  size="lg"
+                  className="group relative overflow-hidden rounded-2xl border border-violet-500/30 bg-gradient-to-br from-[#11061b] via-[#1e0f2c] to-[#331149] px-8 py-6 text-lg font-semibold tracking-wide text-violet-100 shadow-[0_20px_50px_rgba(6,2,14,0.85)]"
+                  asChild
+                >
+                  <Link to="/now" className="relative flex items-center gap-3 overflow-hidden">
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-600 group-hover:opacity-40" />
+                    <span className="absolute inset-y-0 left-0 w-1/2 translate-x-[-100%] bg-gradient-to-r from-transparent via-[#a855f7]/30 to-transparent opacity-0 transition-all duration-600 group-hover:translate-x-[180%] group-hover:opacity-70" />
+                    <span className="relative z-10">What I'm Doing Now</span>
+                    <motion.span
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="relative z-10 text-violet-200"
+                    >
+                      <ArrowRight className="h-5 w-5" />
+                    </motion.span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{
+                  y: -6,
+                  scale: 1.03,
+                  boxShadow: "0 25px 55px rgba(124, 58, 237, 0.3)",
+                }}
+                whileTap={{ scale: 0.97, y: -2 }}
+                transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                className="rounded-2xl"
               >
-                <Link to="/now">What I'm Doing Now</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-emerald-600 text-emerald-400 hover:bg-emerald-600/30 hover:text-emerald-200 hover:border-emerald-400 transition-all"
-                asChild
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="group relative overflow-hidden rounded-2xl border border-violet-500/50 bg-black/30 px-8 py-6 text-lg font-semibold text-violet-100 transition-colors"
+                  asChild
+                >
+                  <Link to="/projects" className="relative flex items-center gap-3">
+                    <span className="absolute inset-0 bg-gradient-to-r from-violet-600/10 via-fuchsia-600/10 to-violet-600/10 opacity-0 transition-all duration-500 group-hover:opacity-100" />
+                    <span className="absolute inset-0 translate-y-full bg-gradient-to-t from-violet-700/30 to-transparent opacity-50 transition duration-500 group-hover:translate-y-0" />
+                    <span className="relative z-10">See What I Build</span>
+                    <span className="relative z-10">
+                      <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{
+                  y: -6,
+                  scale: 1.03,
+                  boxShadow: "0 25px 55px rgba(16, 185, 129, 0.35)",
+                }}
+                whileTap={{ scale: 0.97, y: -2 }}
+                transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                className="rounded-2xl"
               >
-                <Link to="/contact">Get In Touch</Link>
-              </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="group relative overflow-hidden rounded-2xl border border-emerald-500/60 px-8 py-6 text-lg font-semibold text-emerald-300 transition"
+                  asChild
+                >
+                  <Link to="/contact" className="relative flex items-center gap-3">
+                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 opacity-0 transition duration-500 group-hover:opacity-100" />
+                    <span className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-40 group-hover:bg-emerald-500/30 transition duration-500" />
+                    <span className="relative z-10">Get In Touch</span>
+                    <span className="relative z-10">
+                      <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>

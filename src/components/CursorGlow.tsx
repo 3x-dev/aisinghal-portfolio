@@ -7,8 +7,7 @@ export function CursorGlow() {
   const baseX = useMotionValue(0);
   const baseY = useMotionValue(0);
 
-  // Smoother spring configuration
-  const springConfig = { stiffness: 400, damping: 28, mass: 0.5 };
+  const springConfig = { stiffness: 400, damping: 25, mass: 0.5 };
   const dotX = useSpring(baseX, springConfig);
   const dotY = useSpring(baseY, springConfig);
 
@@ -30,13 +29,8 @@ export function CursorGlow() {
       baseY.set(e.clientY);
     };
 
-    const handleLeave = () => {
-      setIsActive(false);
-    };
-
-    const handleEnter = () => {
-      setIsActive(true);
-    };
+    const handleLeave = () => setIsActive(false);
+    const handleEnter = () => setIsActive(true);
 
     window.addEventListener("mousemove", handleMove);
     document.addEventListener("mouseleave", handleLeave);
@@ -52,14 +46,26 @@ export function CursorGlow() {
   if (!isPointer || !isActive) return null;
 
   return (
-    <>
-      <motion.div
-        className="pointer-events-none fixed z-[101]"
-        style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
-      >
-        <div className="h-2.5 w-2.5 rounded-full bg-violet-400 shadow-[0_0_15px_rgba(167,139,250,0.9)]" />
-      </motion.div>
-    </>
+    <motion.div
+      className="pointer-events-none fixed z-[101]"
+      style={{
+        x: dotX,
+        y: dotY,
+        left: 0,
+        top: 0,
+        translateX: "-50%",
+        translateY: "-50%",
+        willChange: "transform",
+      }}
+    >
+      <span className="relative block h-10 w-10">
+        {/* dark outer glow */}
+        <span className="absolute inset-0 rounded-full bg-violet-700/40 blur-2xl" />
+        {/* medium inner glow */}
+        <span className="absolute inset-1 rounded-full bg-violet-600/60 blur-lg" />
+        {/* bright center dot */}
+        <span className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-300" />
+      </span>
+    </motion.div>
   );
 }
-

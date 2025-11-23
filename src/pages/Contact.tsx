@@ -1,9 +1,20 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
+
+const XLogo = () => (
+  <svg
+    className="h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M19.93 3.05h-4.02l-3.8 5.02-3.25-5.02H4.07l5.89 8.08-6.16 9.82h4.02l4.05-5.49 3.66 5.49h4.41l-6.2-8.36 6.19-9.52z" />
+  </svg>
+);
 
 export default function Contact() {
   const socialLinks = [
@@ -20,10 +31,10 @@ export default function Contact() {
       className: "border-blue-600/50 bg-blue-600/10 text-blue-300 hover:bg-blue-600/30 hover:border-blue-400 hover:text-blue-200",
     },
     {
-      label: "Twitter",
+      label: "X",
       href: "https://twitter.com/ai_singhal",
-      icon: Twitter,
-      className: "border-cyan-600/50 bg-cyan-600/10 text-cyan-300 hover:bg-cyan-600/30 hover:border-cyan-400 hover:text-cyan-200",
+      icon: XLogo,
+      className: "border-zinc-500/60 bg-zinc-900/60 text-zinc-200 hover:bg-zinc-800/80 hover:border-zinc-300 hover:text-white",
     },
     {
       label: "Google Scholar",
@@ -108,16 +119,14 @@ export default function Contact() {
                       </Button>
                     </motion.div>
 
-                    <div className="relative w-full max-w-sm mx-auto">
-                      <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t border-zinc-700" />
-                      </div>
-                      <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-zinc-900 px-3 text-gray-500 tracking-[0.2em]">
-                          Or find me on
-                        </span>
-                      </div>
+                    <div className="w-full max-w-sm mx-auto">
+                    <div className="flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.25em] text-zinc-500">
+                      <span className="h-px flex-1 bg-zinc-700" />
+                      <span>Or find me on</span>
+                      <span className="h-px flex-1 bg-zinc-700" />
                     </div>
+                  </div>
+
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mx-auto justify-items-center">
                       {socialLinks.map((link, index) => (

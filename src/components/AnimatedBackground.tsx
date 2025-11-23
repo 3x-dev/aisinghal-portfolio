@@ -66,16 +66,16 @@ export function AnimatedBackground() {
   // we'll use a transform to center it, or just accept the slight offset/lag which is fine for background.
   // Better approach: use a transform translate to center it.
   
-  const maskImage = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(0,0,0,1) 0%, transparent 70%)`;
-  const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.16), transparent 55%)`;
+  const maskImage = useMotionTemplate`radial-gradient(260px circle at ${mouseX}px ${mouseY}px, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 45%, transparent 70%)`;
+  const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(53,16,94,0.7), rgba(22,5,45,0.4) 40%, transparent 65%)`;
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* Animated gradient orbs */}
       <motion.div
-        className="fixed w-[600px] h-[600px] rounded-full pointer-events-none z-0 blur-3xl opacity-30"
+        className="absolute w-[360px] h-[360px] rounded-full pointer-events-none blur-[120px] opacity-45"
         style={{
-          background: "radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(45,12,81,0.8) 0%, transparent 60%)",
           left: orb1Left,
           top: orb1Top,
           translateX: "-50%",
@@ -94,7 +94,7 @@ export function AnimatedBackground() {
       {FLOATING_ORBS.map((orb, index) => (
         <motion.div
           key={index}
-          className="fixed rounded-full pointer-events-none z-0 blur-3xl opacity-30"
+          className="absolute rounded-full pointer-events-none blur-3xl opacity-30"
           style={{
             width: `${orb.size}px`,
             height: `${orb.size}px`,
@@ -113,7 +113,7 @@ export function AnimatedBackground() {
 
       {/* Aurora sweep */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-0 mix-blend-screen opacity-30"
+        className="absolute inset-0 pointer-events-none mix-blend-screen opacity-30"
         style={{
           backgroundImage:
             "linear-gradient(125deg, rgba(167,139,250,0.25), rgba(236,72,153,0.15), rgba(167,139,250,0.25))",
@@ -129,7 +129,7 @@ export function AnimatedBackground() {
       {PARTICLE_CONFIGS.map((particle) => (
         <motion.div
           key={particle.id}
-          className="fixed w-2 h-2 rounded-full pointer-events-none z-0"
+          className="absolute w-2 h-2 rounded-full pointer-events-none"
           style={{
             width: `${particle.size}px`,
             height: `${particle.size}px`,
@@ -153,7 +153,7 @@ export function AnimatedBackground() {
 
       {/* Rotating gradient beam */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-0 opacity-35 blur-[140px]"
+        className="absolute inset-0 pointer-events-none opacity-35 blur-[140px]"
         style={{
           background:
             "conic-gradient(from 90deg at 50% 50%, rgba(147,51,234,0.25), rgba(236,72,153,0.25), rgba(147,51,234,0.25))",
@@ -167,7 +167,7 @@ export function AnimatedBackground() {
 
       {/* Cursor-reveal texture layer */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-0 opacity-30 mix-blend-screen"
+        className="absolute inset-0 pointer-events-none opacity-30 mix-blend-screen"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px)",
@@ -179,7 +179,7 @@ export function AnimatedBackground() {
 
       {/* Luminescent spotlight following the cursor */}
       <motion.div
-        className="fixed inset-0 pointer-events-none z-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: spotlightBackground,
         }}
@@ -189,7 +189,7 @@ export function AnimatedBackground() {
 
       {/* Grid pattern overlay with subtle animation */}
       <motion.div 
-        className="fixed inset-0 bg-grid-pattern pointer-events-none z-0"
+        className="absolute inset-0 bg-grid-pattern pointer-events-none"
         animate={{
           opacity: [0.15, 0.25, 0.15],
         }}

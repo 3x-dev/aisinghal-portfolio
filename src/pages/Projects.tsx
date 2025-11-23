@@ -9,7 +9,7 @@ import { Navigation } from "@/components/Navigation";
 export default function Projects() {
   const projects = [
     {
-      title: "Sustaineo",
+      title: "GPUnity",
       tagline: "Infrastructure for sustainable computing",
       problem: "Current cloud infrastructure wastes massive amounts of energy and resources",
       solution: "Built an architecture that optimizes resource allocation and reduces waste by 40%",
