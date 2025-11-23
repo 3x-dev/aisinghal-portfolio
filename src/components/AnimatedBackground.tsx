@@ -12,6 +12,15 @@ export function AnimatedBackground() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const keywords = [
+    "SYSTEMS", "RUST", "GPU", "SCALE", "INFRA", 
+    "AGENTIC", "ETHICS", "BUILD", "SHIP", "DEPLOY",
+    "COMPUTE", "NODES", "MESH", "GRPC", "K8S",
+    "LATENCY", "MODEL", "DATA", "FLOW", "SYNC",
+    "PURDUE", "CS", "ALGO", "GRAPH", "TIME",
+    "MEMORY", "KERNEL", "LINUX", "DIST", "NET"
+  ];
+
   return (
     <>
       {/* Animated gradient orbs */}
@@ -112,29 +121,63 @@ export function AnimatedBackground() {
       />
 
       {/* Floating particles */}
-      {[...Array(5)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="fixed w-2 h-2 rounded-full pointer-events-none z-0"
+          className="fixed w-1 h-1 rounded-full pointer-events-none z-0 bg-violet-400"
           style={{
-            background: "rgba(139,92,246,0.6)",
-            left: `${20 + i * 15}%`,
-            top: `${30 + i * 10}%`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [0, -100, 0],
-            opacity: [0.2, 0.8, 0.2],
+            y: [0, -30, 0],
+            opacity: [0, 0.8, 0],
+            scale: [0, 1.5, 0],
           }}
           transition={{
-            duration: 5 + i,
+            duration: 3 + Math.random() * 4,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: i * 0.5,
+            delay: Math.random() * 2,
           }}
         />
       ))}
 
-      {/* Cursor-reveal texture layer */}
+      {/* Hidden Words Layer - Revealed by Cursor */}
+      <div 
+        className="fixed inset-0 z-0 flex flex-wrap items-center justify-center gap-16 opacity-20 pointer-events-none overflow-hidden"
+        style={{
+          maskImage: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+          WebkitMaskImage: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+        }}
+      >
+        {keywords.map((word, i) => (
+          <motion.span 
+            key={i} 
+            className="text-4xl md:text-6xl font-black text-violet-400/20 font-mono select-none whitespace-nowrap"
+            animate={{
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 2 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          >
+            {word}
+          </motion.span>
+        ))}
+      </div>
+
+      {/* Noise Texture Overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 opacity-[0.03] mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Cursor-reveal texture layer (Dots) */}
       <div
         className="fixed inset-0 pointer-events-none z-0 opacity-30 mix-blend-screen"
         style={{
@@ -150,7 +193,7 @@ export function AnimatedBackground() {
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.16), transparent 55%)`,
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139,92,246,0.15), transparent 55%)`,
         }}
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
