@@ -29,7 +29,7 @@ export default function Home() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="text-lg md:text-xl tracking-[0.35em] uppercase text-violet-300 mb-4"
+              className="text-lg md:text-xl tracking-[0.35em] uppercase text-emerald-300 mb-4"
             >
               Hey there, I'm
             </motion.p>
