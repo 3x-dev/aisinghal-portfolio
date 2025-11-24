@@ -107,9 +107,8 @@ export default function PastWork() {
               <span className="animated-gradient-text">PAST WORK</span>
             </h1>
             <p className="text-2xl text-gray-400 max-w-3xl">
-              Before going deep on infrastructure and agentic compute, I spent years doing research on
-              NLP, computer vision, and LLMs. My work is published at conferences like NeurIPS,
-              EMNLP, SCCUR, and a handful of journals.
+              I've spent years doing research on NLP, computer vision, and LLMs.
+              My work is published at conferences like NeurIPS, EMNLP, SCCUR, and a handful of journals.
             </p>
           </div>
 
