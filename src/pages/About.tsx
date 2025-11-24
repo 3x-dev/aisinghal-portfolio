@@ -34,39 +34,46 @@ const timelineItemVariants = {
 export default function About() {
   const timeline = [
     {
-      period: "2012-2024",
+      period: "2012-2022",
       title: "Taekwondo Journey",
-      description: "12 years of discipline, competition, and learning how to push through limits.",
+      description:
+        "Third-degree black belt and instructor. 10+ years of drills, sparring, and teaching students how to control power and discipline.",
     },
     {
       period: "2021",
-      title: "First Research Experience",
-      description: "Dove into NLP and computational social science. Learned how to ask better questions.",
+      title: "First AI Research Experience",
+      description:
+        "Got pulled into NLP and computational social science. Started treating messy real-world data as something you can interrogate, not just model. Published a paper at NeurIPS.",
     },
     {
-      period: "2022",
+      period: "2022-2023",
       title: "Bias & Oversight Work",
-      description: "Worked on fairness, bias detection, and content moderation systems.",
+      description:
+        "Worked on political bias and moderation for large language models. Built evaluation pipelines and wrote constitutional-style rules to keep outputs neutral and accountable.",
     },
     {
       period: "2023",
       title: "UCSB Research",
-      description: "Temporal graph neural networks for understanding online polarization.",
+      description:
+        "Built nuanced hate speech models with Reddit data, rating severity instead of using a binary label. Learned how fragile and context-dependent ‘harm’ really is online.",
     },
     {
-      period: "2023",
-      title: "UT Austin",
-      description: "Multilingual NLP and claim verification at scale with ASTRA.",
+      period: "2023-2024",
+      title: "UT Austin & ASTRA",
+      description:
+        "At UT Austin, designed temporal graph neural networks to track user migration and polarization across 2K+ subreddits. At ASTRA, led multilingual claim verification work that shipped papers to EMNLP and NeurIPS.",
     },
     {
-      period: "2024",
-      title: "Purdue CS",
-      description: "Started at Purdue. Shifted focus from pure research to building infrastructure and products.",
+      period: "2025-Present",
+      title: "Purdue AI & CS Student",
+      description:
+        "Started at Purdue in Artificial Intelligence, planning a CS double. Got bored of publishing research papers so now I'm building infrastructure, agents, and things people can actually run.",
     },
     {
-      period: "2024-Present",
+      period: "2025-Present",
       title: "GPUnity & Beyond",
-      description: "Building sustainable compute infrastructure. Exploring agentic systems, GPU scheduling, and decentralized inference.",
+      description:
+        "Building GPU orchestration for AI teams. Working on agents that read your codebase, infer workload needs, and route jobs to best-fit GPUs across clouds under budget and SLA constraints.",
     },
   ];
 
@@ -84,9 +91,7 @@ export default function About() {
         >
           <div className="mb-16">
             <h1 className="text-6xl md:text-7xl font-black mb-6">
-              <span className="animated-gradient-text">
-                ABOUT
-              </span>
+              <span className="animated-gradient-text"> MY JOURNEY</span>
             </h1>
           </div>
 
@@ -99,38 +104,43 @@ export default function About() {
             whileHover="hovered"
           >
             <motion.div
-              className="pointer-events-none absolute -inset-2 rounded-[32px] bg-gradient-to-r from-violet-600/30 via-fuchsia-500/25 to-transparent opacity-0 blur-3xl transition duration-500 group-hover:opacity-100"
-              variants={{ hovered: { opacity: 1 } }}
-            />
-            <h2 className="text-4xl font-bold mb-6 text-white">Present</h2>
-            <Card className="relative overflow-hidden rounded-[28px] bg-zinc-950/70 border-zinc-900 transition-all duration-500 group-hover:border-violet-500/60 backdrop-blur-md">
-              <CardContent className="p-8 relative">
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-radial from-violet-500/40 via-transparent to-transparent"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
-                  <p>
-                    I'm a freshman at Purdue studying Computer Science. I build infrastructure and AI systems.
-                  </p>
-                  <p>
-                    {withGPUnityLink(
-                      "Currently working on my startup, GPUnity, a startup focused on sustainable compute infrastructure. I'm exploring agentic architectures, GPU scheduling optimization, and decentralized inference patterns."
-                    )}
-                  </p>
-                  <p>
-                    My interests sit at the intersection of <span className="text-emerald-400 font-semibold">intelligence</span>, 
-                    <span className="text-blue-400 font-semibold"> behavior</span>, and 
-                    <span className="text-fuchsia-400 font-semibold"> ethics</span>. I care about building 
-                    systems that scale, work efficiently, and don't waste resources.
-                  </p>
-                  <p className="text-violet-400 font-semibold">
-                    I don't wait for opportunities—I create them.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            className="pointer-events-none absolute -inset-2 rounded-[32px] bg-gradient-to-r from-violet-600/30 via-fuchsia-500/25 to-transparent opacity-0 blur-3xl transition duration-500 group-hover:opacity-100"
+            variants={{ hovered: { opacity: 1 } }}
+          />
+          <h2 className="text-4xl font-bold mb-6 text-white">Present</h2>
+          <Card className="relative overflow-hidden rounded-[28px] bg-zinc-950/70 border-zinc-900 transition-all duration-500 group-hover:border-violet-500/60 backdrop-blur-md">
+            <CardContent className="p-8 relative">
+              <motion.div
+                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-radial from-violet-500/40 via-transparent to-transparent"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
+                <p>
+                  I'm a freshman at Purdue studying Artificial Intelligence (planning on double majoring in CS).
+                </p>
+                <p>
+                  Right now most of my time goes into{" "}
+                  <a
+                    href={GPUNITY_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+                  >
+                    GPUnity
+                  </a>{" "}
+                   (feel free to join the waitlist!), a GPU orchestration platform where agents read your codebase, figure out what kind of jobs you are running, and ship them to the right GPUs across different cloud providers.
+                </p>
+                <p>
+                  Most of what I care about lives between{" "}
+                  <span className="text-emerald-400 font-semibold">intelligence</span>,
+                  <span className="text-blue-400 font-semibold"> behavior</span>, and
+                  <span className="text-fuchsia-400 font-semibold"> ethics</span>. I like seeing how systems behave in the wild, where they fall apart, and whether they are actually worth the compute they burn.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
           </motion.div>
 
           {/* Trajectory */}
@@ -167,7 +177,9 @@ export default function About() {
                     <div className="text-violet-300 font-mono text-sm mb-2 tracking-[0.25em]">
                       {item.period}
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{withGPUnityLink(item.title)}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {withGPUnityLink(item.title)}
+                    </h3>
                     <p className="text-gray-400 text-lg leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>

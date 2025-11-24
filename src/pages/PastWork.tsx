@@ -1,37 +1,9 @@
 import { motion } from "framer-motion";
-import {
-  FileText,
-  Award,
-  Presentation,
-  Sparkles,
-  Globe,
-  Layers,
-} from "lucide-react";
+import { FileText, Award, Presentation, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
-
-const highlightStats = [
-  {
-    label: "Peer-reviewed + workshops",
-    value: "8",
-    detail: "NeurIPS • EMNLP • SCCUR",
-    accent: "from-violet-500 via-fuchsia-500 to-cyan-400",
-  },
-  {
-    label: "Languages fact-checked",
-    value: "15",
-    detail: "Bias metrics + LLM evals",
-    accent: "from-emerald-400 via-teal-400 to-sky-400",
-  },
-  {
-    label: "Datasets released",
-    value: "40K+",
-    detail: "MRI scans • bias corpora",
-    accent: "from-amber-400 via-orange-400 to-rose-500",
-  },
-];
 
 export default function PastWork() {
   const publications = [
@@ -42,7 +14,7 @@ export default function PastWork() {
       year: "2024",
       type: "publication",
       description:
-        "Benchmarked GPT 4o, Llama 3.1, and Mistral on 600+ factual claims across 15 languages, defining accuracy and translation bias metrics that expose a 40 percent performance gap between high and low resource languages.",
+        "Evaluated GPT 4o, Llama 3.1, and Mistral models on hundreds of factual claims across 15 languages, defining accuracy and translation bias metrics that reveal a large performance gap between high and low resource languages.",
     },
     {
       title:
@@ -51,15 +23,15 @@ export default function PastWork() {
       year: "2024",
       type: "publication",
       description:
-        "Introduced a quantum vision transformer that reaches 87 percent accuracy on multi stage Alzheimer’s diagnosis from MRI scans, using a variational quantum circuit to cut compute cost and releasing a 40K scan dataset for the community.",
+        "Introduced a quantum vision transformer for multi stage Alzheimer’s diagnosis from MRI scans, using a variational quantum circuit to cut compute cost while keeping accuracy competitive with classical baselines.",
     },
     {
       title: "Multilingual Fact-Checking Using Large Language Models",
-      venue: "EMNLP 2024 (NLP for Social Good / NLP for Positive Impact)",
+      venue: "EMNLP 2024 (NLP for Positive Impact Workshop)",
       year: "2024",
       type: "publication",
       description:
-        "Built an end to end multilingual claim verification pipeline that combines prompting strategies, translation paths, and calibration to verify claims in 15 languages, with a focus on low resource settings and cross cultural robustness.",
+        "Built a multilingual fact checking benchmark and pipeline across five languages using prompting strategies, translation paths, and calibration to study how well LLMs verify real world claims in low resource settings.",
     },
     {
       title:
@@ -68,16 +40,16 @@ export default function PastWork() {
       year: "2024",
       type: "journal",
       description:
-        "Analyzed how different Constitutional AI principles shift ChatGPT’s answers on US politics and showed how to design constraints that reduce partisan leaning while preserving nuance and answer quality.",
+        "Used Constitutional AI style principles to test whether rule based constraints can reduce political bias in ChatGPT 3.5, finding limited gains from off the shelf principles but promising reductions on some topics with a tailored principle and prompt template.",
     },
     {
       title:
         "Mitigating Political Bias in ChatGPT Using Chain of Thought and Constitutional AI",
       venue: "IJRASET",
-      year: "2023",
+      year: "2024",
       type: "journal",
       description:
-        "Demonstrated that combining chain of thought prompting with targeted review principles can reduce directional political bias on open ended prompts without collapsing model usefulness.",
+        "Showed that chain of thought prompting can reduce directional political bias in ChatGPT on open ended prompts while maintaining response quality, by iteratively refining answers using measured bias scores.",
     },
   ];
 
@@ -90,7 +62,7 @@ export default function PastWork() {
       year: "2023",
       type: "poster",
       description:
-        "Presented early work on measuring and mitigating political bias in ChatGPT using Constitutional AI techniques, aimed at making large public models safer for civic discussions.",
+        "Presented early work on measuring and mitigating political bias in ChatGPT using prompt design and Constitutional AI ideas, aimed at making large public models safer for civic discussions.",
     },
     {
       title:
@@ -99,7 +71,7 @@ export default function PastWork() {
       year: "2024",
       type: "poster",
       description:
-        "Showcased an ensemble model that scores hate speech severity on a 1 to 6 scale for real extremist forums, highlighting design choices for dealing with label noise and subtle coded language.",
+        "Showcased an ensemble model that scores hate speech severity on a 1 to 6 scale for real extremist forums, highlighting techniques for handling label noise and subtle coded language.",
     },
     {
       title:
@@ -130,73 +102,16 @@ export default function PastWork() {
           transition={{ duration: 0.6 }}
           className="max-w-6xl mx-auto space-y-14"
         >
-          <section className="relative overflow-hidden rounded-[44px] border border-white/10 bg-gradient-to-br from-white/5 via-transparent to-transparent p-10">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-violet-600/10 via-fuchsia-500/5 to-cyan-500/10 blur-3xl"
-              animate={{ opacity: [0.2, 0.45, 0.2], rotate: [0, 6, 0] }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            />
-            <div className="relative z-10 space-y-5">
-              <Badge className="bg-white/10 text-white border-white/30">Past Work · Research</Badge>
-              <div className="flex flex-wrap items-end gap-4">
-                <h1 className="text-6xl md:text-7xl font-black">
-                  <span className="animated-gradient-text">PAST WORK</span>
-                </h1>
-                <motion.div
-                  className="flex items-center gap-2 text-sm text-gray-400"
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Sparkles className="h-4 w-4 text-violet-300" />
-                  NLP · quantum vision · multilingual fact-checking
-                </motion.div>
-              </div>
-              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
-                Before going deep on infrastructure and agentic compute, I spent years doing research
-                on NLP, computational social science, and multilingual evaluation—publishing at NeurIPS,
-                EMNLP, SCCUR, and a handful of journals.
-              </p>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 bg-white/5">
-                  <Globe className="h-4 w-4 text-emerald-300" />
-                  Cross-language bias metrics
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 bg-white/5">
-                  <Layers className="h-4 w-4 text-amber-300" />
-                  Quantum + classical vision stacks
-                </span>
-              </div>
-            </div>
-          </section>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            className="grid gap-6 md:grid-cols-3"
-          >
-            {highlightStats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                whileHover={{ y: -6 }}
-                className="relative rounded-3xl border border-white/10 bg-white/5 p-6 overflow-hidden"
-              >
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${stat.accent} opacity-0 blur-2xl`}
-                  initial={{ opacity: 0.1 }}
-                  animate={{ opacity: [0.1, 0.35, 0.1] }}
-                  transition={{ duration: 6 + index, repeat: Infinity }}
-                />
-                <div className="relative z-10 space-y-2">
-                  <p className="text-sm uppercase tracking-[0.35em] text-gray-500">
-                    {stat.label}
-                  </p>
-                  <p className="text-4xl font-black text-white">{stat.value}</p>
-                  <p className="text-sm text-gray-300">{stat.detail}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="mb-16">
+            <h1 className="text-6xl md:text-7xl font-black mb-6">
+              <span className="animated-gradient-text">PAST WORK</span>
+            </h1>
+            <p className="text-2xl text-gray-400 max-w-3xl">
+              Before going deep on infrastructure and agentic compute, I spent years doing research on
+              NLP, computer vision, and LLMs. My work is published at conferences like NeurIPS,
+              EMNLP, SCCUR, and a handful of journals.
+            </p>
+          </div>
 
           <section className="grid gap-10 lg:grid-cols-[3fr,1.2fr]">
             <div className="space-y-6">
@@ -251,13 +166,13 @@ export default function PastWork() {
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <Presentation className="h-6 w-6 text-emerald-400" />
-                <h2 className="text-3xl font-bold">Live ticker</h2>
+                <h2 className="text-3xl font-bold">Snapshot</h2>
               </div>
               <Card className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                 <CardContent className="p-0">
                   <div className="border-b border-white/5 px-6 py-4 text-sm text-gray-400 flex items-center gap-2">
                     <Sparkles className="h-4 w-4 text-emerald-300" />
-                    Constantly shipping ideas into venues
+                    <span>Recent papers and talks</span>
                   </div>
                   <div className="relative h-[320px] overflow-hidden">
                     <motion.div

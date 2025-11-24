@@ -5,7 +5,7 @@ import AuthPage from "@/pages/Auth.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
 import { AnimatePresence } from "framer-motion";
-import { StrictMode, useEffect } from "react";
+import { ReactNode, StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import Lenis from "lenis";
@@ -20,12 +20,17 @@ import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { CursorGlow } from "@/components/CursorGlow.tsx";
 import { PageTransition, RouteTransitionOverlay } from "@/components/PageTransition.tsx";
+import { AuthContextProvider, AuthFallbackProvider } from "@/hooks/use-auth.tsx";
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+const convexUrl = import.meta.env.VITE_CONVEX_URL;
+const convex = convexUrl ? new ConvexReactClient(convexUrl) : null;
+const missingConvexWarning =
+  "VITE_CONVEX_URL is not set. Running Convex auth in disabled mode.";
+let hasWarnedAboutConvex = false;
 
 
 
-function RouteSyncer() {
+export function RouteSyncer() {
   const location = useLocation();
   useEffect(() => {
     window.parent.postMessage(
@@ -48,7 +53,7 @@ function RouteSyncer() {
   return null;
 }
  
-function SmoothScrollController() {
+export function SmoothScrollController() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis: Lenis | null = null;
@@ -107,7 +112,23 @@ function SmoothScrollController() {
   return null;
 }
 
-function AnimatedRoutes() {
+export function ConvexAuthBoundary({ children }: { children: ReactNode }) {
+  if (!convex) {
+    if (import.meta.env.DEV && !hasWarnedAboutConvex) {
+      console.warn(missingConvexWarning);
+      hasWarnedAboutConvex = true;
+    }
+    return <AuthFallbackProvider>{children}</AuthFallbackProvider>;
+  }
+
+  return (
+    <ConvexAuthProvider client={convex}>
+      <AuthContextProvider>{children}</AuthContextProvider>
+    </ConvexAuthProvider>
+  );
+}
+
+export function AnimatedRoutes() {
   const location = useLocation();
 
   return (
@@ -186,16 +207,18 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <VlyToolbar />
     <InstrumentationProvider>
-      <ConvexAuthProvider client={convex}>
-        <BrowserRouter>
-          <CursorGlow />
-          <SmoothScrollController />
-          <RouteSyncer />
-          <RouteTransitionOverlay />
-          <AnimatedRoutes />
-        </BrowserRouter>
-        <Toaster />
-      </ConvexAuthProvider>
+      <ConvexAuthBoundary>
+        <>
+          <BrowserRouter>
+            <CursorGlow />
+            <SmoothScrollController />
+            <RouteSyncer />
+            <RouteTransitionOverlay />
+            <AnimatedRoutes />
+          </BrowserRouter>
+          <Toaster />
+        </>
+      </ConvexAuthBoundary>
     </InstrumentationProvider>
   </StrictMode>,
 );
