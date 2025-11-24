@@ -13,7 +13,6 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import Now from "./pages/Now.tsx";
 import Projects from "./pages/Projects.tsx";
-import Thinking from "./pages/Thinking.tsx";
 import About from "./pages/About.tsx";
 import PastWork from "./pages/PastWork.tsx";
 import Contact from "./pages/Contact.tsx";
@@ -135,14 +134,6 @@ function AnimatedRoutes() {
           element={
             <PageTransition>
               <Projects />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/thinking"
-          element={
-            <PageTransition>
-              <Thinking />
             </PageTransition>
           }
         />

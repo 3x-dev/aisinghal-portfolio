@@ -16,7 +16,7 @@ const TYPEWRITER_PHRASES = [
   "love learning new things.",
   "build because leaving things broken annoys me.",
   "focus on what scales, not what trends.",
-  "think you're awesome.",
+  "think you're awesome!",
   "hate overcomplicating things.",
   "solve problems that people only notice once they disappear.",
   "think better when the stakes are high.",
@@ -230,7 +230,7 @@ function shuffleIndices(length: number) {
                   <Link to="/projects" className="relative flex items-center gap-3">
                     <span className="absolute inset-0 bg-gradient-to-r from-violet-600/10 via-fuchsia-600/10 to-violet-600/10 opacity-0 transition-all duration-500 group-hover:opacity-100" />
                     <span className="absolute inset-0 translate-y-full bg-gradient-to-t from-violet-700/30 to-transparent opacity-50 transition duration-500 group-hover:translate-y-0" />
-                    <span className="relative z-10">See What I Build</span>
+                    <span className="relative z-10">See What I've Built</span>
                     <span className="relative z-10">
                       <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
