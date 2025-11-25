@@ -35,46 +35,130 @@ export default function About() {
   const timeline = [
     {
       period: "2012-2022",
-      title: "Taekwondo Journey",
+      title: "Martial Arts Journey",
       description:
-        "Third-degree black belt and instructor. 10+ years of drills, sparring, and teaching students how to control power and discipline.",
-    },
-    {
-      period: "2021",
-      title: "First AI Research Experience",
-      description:
-        "Got pulled into NLP and computational social science. Started treating messy real-world data as something you can interrogate, not just model. Published a paper at NeurIPS.",
-    },
-    {
-      period: "2022-2023",
-      title: "Bias & Oversight Work",
-      description:
-        "Worked on political bias and moderation for large language models. Built evaluation pipelines and wrote constitutional-style rules to keep outputs neutral and accountable.",
-    },
-    {
-      period: "2023",
-      title: "UCSB Research",
-      description:
-        "Built nuanced hate speech models with Reddit data, rating severity instead of using a binary label. Learned how fragile and context-dependent ‘harm’ really is online.",
-    },
-    {
-      period: "2023-2024",
-      title: "UT Austin & ASTRA",
-      description:
-        "At UT Austin, designed temporal graph neural networks to track user migration and polarization across 2K+ subreddits. At ASTRA, led multilingual claim verification work that shipped papers to EMNLP and NeurIPS.",
+        "Mom and dad signed me up for Taekwondo when I was 5 (classic Asian parent move). Now I'm a third-degree black belt and instructor. 10+ years of drills, sparring, and teaching students to channel power with discipline.",
     },
     {
       period: "2025-Present",
-      title: "Purdue AI & CS Student",
+      title: "Purdue Student",
       description:
-        "Started at Purdue in Artificial Intelligence, planning a CS double. Got bored of publishing research papers so now I'm building infrastructure, agents, and things people can actually run.",
+        "Studying Artificial Intelligence at Purdue (Boiler Up!) with a planned Computer Science double. Less academic paper-chasing, more shipping infrastructure, agents, and compute workflows people actually use.",
+    },
+    // {
+    //   period: "Sep 2025 - Present",
+    //   title: "Boiler Blockchain · Machine Learning Engineer",
+    //   description:
+    //     "Building risk signals and automation for the club’s DeFi analytics stack—scoping models, cleaning on-chain data, and making sure nothing melts a GPU cluster the night before a demo.",
+    // },
+    {
+      period: "Mar 2024 - Aug 2025",
+      title: "ASTRA · Executive Board",
+      description:
+        "Scaled Purdue’s student AI research org. Matched builders to mentors, orchestrated reading groups, and turned scrappy ideas into papers and open-source artifacts.",
     },
     {
-      period: "2025-Present",
-      title: "GPUnity & Beyond",
-      description:
-        "Building GPU orchestration for AI teams. Working on agents that read your codebase, infer workload needs, and route jobs to best-fit GPUs across clouds under budget and SLA constraints.",
+      period: "Oct 2023 - Aug 2025",
+      title: "Q-Sight Labs · Co-Founder",
+      description: (
+        <>
+          Co-built the first quantum vision transformer for multi-stage Alzheimer&apos;s detection. The
+          science fair judges passed, so we shipped it to NeurIPS 2024 instead.{" "}
+          <a
+            href="https://openreview.net/pdf?id=suWYAfyWBa"
+            target="_blank"
+            rel="noreferrer"
+            className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+          >
+            Read the paper
+          </a>
+          .
+        </>
+      ),
     },
+    {
+      period: "Jun 2021 - Aug 2025",
+      title: "LookaheadAI · Software Developer",
+      description:
+        "Four summers of backend and analytics work for a tiny AI consultancy—owning everything from ETL pipelines to client dashboards and on-call MLOps firefights.",
+    },
+    {
+      period: "May 2024 - May 2025",
+      title: "UT Austin · Machine Learning Research Intern",
+      description:
+        "Designed a multi-modal temporal graph neural network to track ideological migration across 2K+ subreddits. It predicts when communities drift, polarize, or collapse entirely.",
+    },
+    {
+      period: "Aug 2024 - Apr 2025",
+      title: "National AI Youth Council · Exec Innovation & Research",
+      description:
+        "Ran the innovation committee—scouting student AI teams, writing policy briefs, and keeping the national conversation grounded in actual research instead of hype.",
+    },
+    {
+      period: "Jun 2024 - Feb 2025",
+      title: "Algoverse · Research Intern",
+      description:
+        "Prototyped RLHF evaluation harnesses and safety tests for early-stage language models. Lots of red-teaming, dataset curation, and cataloging honest failure modes.",
+    },
+    {
+      period: "Jan 2024 - Feb 2025",
+      title: "UC Santa Barbara · ML/Comms Research Intern",
+      description:
+        "Built gradient-boosted regressors to score hate speech severity (1–6 scale) for extremist forums. Learned how subjective “harm” becomes once you leave sanitized benchmarks.",
+    },
+    {
+      period: "May 2023 - May 2024",
+      title: "ASDRP · AI Researcher",
+      description: (
+        <>
+          Mitigated political bias in ChatGPT by pairing Anthropic-style constitutional rules with
+          chain-of-thought prompting. Published both the{" "}
+          <a
+            href="https://emerginginvestigators.org/articles/24-047"
+            target="_blank"
+            rel="noreferrer"
+            className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+          >
+            constitutional AI case study
+          </a>{" "}
+          and the{" "}
+          <a
+            href="https://www.ijraset.com/research-paper/mitigating-political-bias-in-large-language-models"
+            target="_blank"
+            rel="noreferrer"
+            className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+          >
+            chain-of-thought follow-up
+          </a>
+          , then presented it at SCCUR 2023.
+        </>
+      ),
+    },
+    {
+      period: "2022",
+      title: "First ML Research Experience",
+      description: (
+        <>
+          Built a scrappy supervised Naive Bayes model to spot hate speech trends on Twitter. Rough,
+          but it ignited the ML obsession. Read about it{" "}
+          <a
+            href="https://github.com/3x-dev/Analyzing-Twitter-Hate-Speech-Trends-Using-Sentiment-Analysis"
+            target="_blank"
+            rel="noreferrer"
+            className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+          >
+            here
+          </a>
+          .
+        </>
+      ),
+    },
+    // {
+    //   period: "2020-2022",
+    //   title: "Sunnyvale Martial Arts Academy · Instructor",
+    //   description:
+    //     "Taught forms, sparring, and how to fall without breaking anything. Coaching younger students cemented my own fundamentals and communication skills.",
+    // },
   ];
 
   return (
