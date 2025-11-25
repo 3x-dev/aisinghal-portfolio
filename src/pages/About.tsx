@@ -34,23 +34,29 @@ const timelineItemVariants = {
 export default function About() {
   const timeline = [
     {
-      period: "2012-2022",
-      title: "Martial Arts Journey",
-      description:
-        "Mom and dad signed me up for Taekwondo when I was 5 (classic Asian parent move). Now I'm a third-degree black belt and instructor. 10+ years of drills, sparring, and teaching students to channel power with discipline.",
+      period: "2025-Present",
+      title: "GPUnity",
+      description: (
+        <>
+          Building agents that read your codebase, infer workload needs, and route jobs to best-fit GPUs across clouds under budget constraints.{" "}
+          <a
+            href={GPUNITY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
+          >
+            Join the waitlist
+          </a>
+          .
+        </>
+      ),
     },
     {
       period: "2025-Present",
       title: "Purdue Student",
       description:
-        "Studying Artificial Intelligence at Purdue (Boiler Up!) with a planned Computer Science double. Less academic paper-chasing, more shipping infrastructure, agents, and compute workflows people actually use.",
+        "Studying Artificial Intelligence at Purdue (Boiler Up!) with a planned Computer Science double. Got bored of writing research papers so now I'm shipping high-impact products.",
     },
-    // {
-    //   period: "Sep 2025 - Present",
-    //   title: "Boiler Blockchain · Machine Learning Engineer",
-    //   description:
-    //     "Building risk signals and automation for the club’s DeFi analytics stack—scoping models, cleaning on-chain data, and making sure nothing melts a GPU cluster the night before a demo.",
-    // },
     {
       period: "Mar 2024 - Aug 2025",
       title: "ASTRA · Executive Board",
@@ -62,8 +68,7 @@ export default function About() {
       title: "Q-Sight Labs · Co-Founder",
       description: (
         <>
-          Co-built the first quantum vision transformer for multi-stage Alzheimer&apos;s detection. The
-          science fair judges passed, so we shipped it to NeurIPS 2024 instead.{" "}
+          Co-built the first quantum vision transformer for multi-stage Alzheimer&apos;s detection. The science fair judges passed, so we shipped it to NeurIPS 2024 instead.{" "}
           <a
             href="https://openreview.net/pdf?id=suWYAfyWBa"
             target="_blank"
@@ -77,12 +82,6 @@ export default function About() {
       ),
     },
     {
-      period: "Jun 2021 - Aug 2025",
-      title: "LookaheadAI · Software Developer",
-      description:
-        "Four summers of backend and analytics work for a tiny AI consultancy—owning everything from ETL pipelines to client dashboards and on-call MLOps firefights.",
-    },
-    {
       period: "May 2024 - May 2025",
       title: "UT Austin · Machine Learning Research Intern",
       description:
@@ -90,9 +89,9 @@ export default function About() {
     },
     {
       period: "Aug 2024 - Apr 2025",
-      title: "National AI Youth Council · Exec Innovation & Research",
+      title: "National AI Youth Council",
       description:
-        "Ran the innovation committee—scouting student AI teams, writing policy briefs, and keeping the national conversation grounded in actual research instead of hype.",
+        "Led the research and innovation committee for writing AI policy briefs.",
     },
     {
       period: "Jun 2024 - Feb 2025",
@@ -111,8 +110,7 @@ export default function About() {
       title: "ASDRP · AI Researcher",
       description: (
         <>
-          Mitigated political bias in ChatGPT by pairing Anthropic-style constitutional rules with
-          chain-of-thought prompting. Published both the{" "}
+          Mitigated political bias in ChatGPT by pairing Anthropic-style constitutional rules with chain-of-thought prompting. Published both the{" "}
           <a
             href="https://emerginginvestigators.org/articles/24-047"
             target="_blank"
@@ -139,8 +137,7 @@ export default function About() {
       title: "First ML Research Experience",
       description: (
         <>
-          Built a scrappy supervised Naive Bayes model to spot hate speech trends on Twitter. Rough,
-          but it ignited the ML obsession. Read about it{" "}
+          Built a supervised Naive Bayes model to spot hate speech trends on Twitter. Pretty crappy model, but it began my AI obsession. Read about it{" "}
           <a
             href="https://github.com/3x-dev/Analyzing-Twitter-Hate-Speech-Trends-Using-Sentiment-Analysis"
             target="_blank"
@@ -153,12 +150,12 @@ export default function About() {
         </>
       ),
     },
-    // {
-    //   period: "2020-2022",
-    //   title: "Sunnyvale Martial Arts Academy · Instructor",
-    //   description:
-    //     "Taught forms, sparring, and how to fall without breaking anything. Coaching younger students cemented my own fundamentals and communication skills.",
-    // },
+    {
+      period: "2012-2022",
+      title: "Martial Arts Journey",
+      description:
+        "Mom and dad signed me up for Taekwondo when I was 5 (classic Asian parent move). 10+ years of drills, sparring, and teaching students to channel their power, I achieved my third-degree black belt. ",
+    },
   ];
 
   return (
@@ -233,7 +230,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <h2 className="text-4xl font-bold mb-8 text-white">Trajectory</h2>
+            <h2 className="text-4xl font-bold mb-8 text-white">My Journey</h2>
             <div className="space-y-6">
               {timeline.map((item, index) => (
                 <motion.div
