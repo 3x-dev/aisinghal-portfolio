@@ -172,7 +172,7 @@ export default function About() {
         >
           <div className="mb-16">
             <h1 className="text-6xl md:text-7xl font-black mb-6">
-              <span className="animated-gradient-text"> MY JOURNEY</span>
+              <span className="animated-gradient-text">ABOUT ME</span>
             </h1>
           </div>
 
