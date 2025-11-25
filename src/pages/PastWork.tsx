@@ -108,7 +108,7 @@ export default function PastWork() {
             </h1>
             <p className="text-2xl text-gray-400 max-w-3xl">
               I've spent years doing research on NLP, computer vision, and LLMs.
-              My work is published at conferences like NeurIPS, EMNLP, SCCUR, and a handful of journals.
+              My work is published at top conferences like NeurIPS, EMNLP, SCCUR.
             </p>
           </div>
 
@@ -214,28 +214,36 @@ export default function PastWork() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   className="snap-center min-w-[280px] md:min-w-[360px]"
+                  style={{ perspective: "1400px" }}
                 >
-                  <Card className="relative h-full rounded-3xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-rose-500/10 to-transparent opacity-60"
-                      animate={{ opacity: [0.4, 0.8, 0.4], rotate: [0, 4, 0] }}
-                      transition={{ duration: 8, repeat: Infinity, delay: index * 0.2 }}
-                    />
-                    <CardContent className="relative z-10 p-6 space-y-4">
-                      <div className="space-y-2">
-                        <p className="text-sm text-gray-500 uppercase tracking-[0.3em]">
-                          {poster.year}
+                  <motion.div
+                    whileHover={{ rotateY: 8, rotateX: -2, y: -8 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 14, mass: 0.8 }}
+                    className="h-full"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    <Card className="relative h-full rounded-3xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl overflow-hidden shadow-[0px_20px_50px_rgba(0,0,0,0.35)]">
+                      <motion.div
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/10 via-rose-500/10 to-transparent opacity-60"
+                        animate={{ opacity: [0.35, 0.7, 0.35], scale: [1, 1.02, 1] }}
+                        transition={{ duration: 8, repeat: Infinity, delay: index * 0.2 }}
+                      />
+                      <CardContent className="relative z-10 p-6 space-y-4">
+                        <div className="space-y-2">
+                          <p className="text-sm text-gray-500 uppercase tracking-[0.3em]">
+                            {poster.year}
+                          </p>
+                          <h3 className="text-lg font-semibold text-white">{poster.title}</h3>
+                        </div>
+                        <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40">
+                          {poster.venue}
+                        </Badge>
+                        <p className="text-sm text-gray-300 leading-relaxed">
+                          {poster.description}
                         </p>
-                        <h3 className="text-lg font-semibold text-white">{poster.title}</h3>
-                      </div>
-                      <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40">
-                        {poster.venue}
-                      </Badge>
-                      <p className="text-sm text-gray-300 leading-relaxed">
-                        {poster.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>

@@ -182,3 +182,14 @@
     background-position: 0% 50%;
   }
 }
+
+.goodreads-rail {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.goodreads-rail::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}

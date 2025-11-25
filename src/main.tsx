@@ -26,6 +26,8 @@ const convexUrl = import.meta.env.VITE_CONVEX_URL;
 const convex = convexUrl ? new ConvexReactClient(convexUrl) : null;
 const missingConvexWarning =
   "VITE_CONVEX_URL is not set. Running Convex auth in disabled mode.";
+const shouldWarnAboutConvex =
+  import.meta.env.VITE_WARN_ABOUT_CONVEX === "true";
 let hasWarnedAboutConvex = false;
 
 
@@ -114,7 +116,7 @@ export function SmoothScrollController() {
 
 export function ConvexAuthBoundary({ children }: { children: ReactNode }) {
   if (!convex) {
-    if (import.meta.env.DEV && !hasWarnedAboutConvex) {
+    if (import.meta.env.DEV && shouldWarnAboutConvex && !hasWarnedAboutConvex) {
       console.warn(missingConvexWarning);
       hasWarnedAboutConvex = true;
     }
