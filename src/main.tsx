@@ -18,7 +18,6 @@ import PastWork from "./pages/PastWork.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
-import { CursorGlow } from "@/components/CursorGlow.tsx";
 import { PageTransition, RouteTransitionOverlay } from "@/components/PageTransition.tsx";
 import { AuthContextProvider, AuthFallbackProvider } from "@/hooks/use-auth.tsx";
 
@@ -212,7 +211,6 @@ createRoot(document.getElementById("root")!).render(
       <ConvexAuthBoundary>
         <>
           <BrowserRouter>
-            <CursorGlow />
             <SmoothScrollController />
             <RouteSyncer />
             <RouteTransitionOverlay />

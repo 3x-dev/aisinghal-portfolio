@@ -135,17 +135,7 @@
   }
 }
 
-@media (pointer: fine) {
-  body,
-  a,
-  button:not([disabled]),
-  [role="button"]:not([disabled]),
-  input,
-  textarea,
-  select {
-    cursor: none !important;
-  }
-}
+/* System cursor restored while custom cursor is disabled */
 
 .bg-grid-pattern {
   background-image: 
