@@ -49,12 +49,42 @@ export function AnimatedBackground() {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const hasFinePointer = window.matchMedia("(pointer: fine)");
+
+    // Skip expensive mouse tracking on coarse pointers or when motion is reduced
+    if (prefersReducedMotion.matches || !hasFinePointer.matches) {
+      return;
+    }
+
+    let rafId: number | null = null;
+    let latestEvent: MouseEvent | null = null;
+
+    const updatePosition = () => {
+      if (!latestEvent) {
+        rafId = null;
+        return;
+      }
+      mouseX.set(latestEvent.clientX);
+      mouseY.set(latestEvent.clientY);
+      latestEvent = null;
+      rafId = null;
     };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      latestEvent = e;
+      if (rafId === null) {
+        rafId = requestAnimationFrame(updatePosition);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [mouseX, mouseY]);
 
   // Create motion templates for complex style strings

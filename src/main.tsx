@@ -64,11 +64,11 @@ export function SmoothScrollController() {
       if (lenis) return;
 
       lenis = new Lenis({
-        duration: 1.05,
+        duration: 0.85, // lower duration = less damped smoothing
         smoothWheel: true,
         gestureOrientation: "vertical",
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1.2,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.1,
       });
 
       const raf = (time: number) => {

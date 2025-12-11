@@ -84,7 +84,7 @@ function shuffleIndices(length: number) {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Bottom gradient to prevent white space */}
-      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
       <AnimatedBackground />
       <Navigation />
       
@@ -92,7 +92,7 @@ function shuffleIndices(length: number) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="min-h-screen flex items-center justify-center relative px-4 pt-20"
+        className="min-h-screen flex items-center justify-center relative px-4 pt-20 pb-12"
       >
         <div className="max-w-4xl w-full relative z-10">
           <motion.div
@@ -179,7 +179,7 @@ function shuffleIndices(length: number) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 pb-2"
             >
               <motion.div
                 whileHover={{

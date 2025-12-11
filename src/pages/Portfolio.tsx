@@ -1,22 +1,45 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { Github, Linkedin, Mail, Terminal, Zap, Coffee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Portfolio() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const followerX = useMotionValue(0);
+  const followerY = useMotionValue(0);
+  const followerRadius = 192; // half of 384px (w-96/h-96) to keep center aligned
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    let rafId: number | null = null;
+    let latestEvent: MouseEvent | null = null;
+
+    const updateFollower = () => {
+      if (!latestEvent) {
+        rafId = null;
+        return;
+      }
+      followerX.set(latestEvent.clientX - followerRadius);
+      followerY.set(latestEvent.clientY - followerRadius);
+      latestEvent = null;
+      rafId = null;
     };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      latestEvent = e;
+      if (rafId === null) {
+        rafId = requestAnimationFrame(updateFollower);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [followerX, followerY, followerRadius]);
 
   const projects = [
     {
@@ -55,8 +78,8 @@ export default function Portfolio() {
         className="fixed w-96 h-96 rounded-full pointer-events-none z-0 blur-3xl"
         style={{
           background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)",
-          left: mousePosition.x - 192,
-          top: mousePosition.y - 192,
+          x: followerX,
+          y: followerY,
         }}
       />
 
