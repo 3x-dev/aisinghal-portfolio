@@ -85,7 +85,7 @@ export default function Now() {
       icon: Code,
       title: "Building",
       items: [
-        "GPUnity: automatically recommends, provisions, and manages compute",
+        "GPUnity: automatically recommends, provisions, and manages hardware",
         "A pricing + availability engine for multi-cloud GPU markets",
         "Agentic workflows powered by MCP for infra automation"
       ],

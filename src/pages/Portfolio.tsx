@@ -373,7 +373,7 @@ export default function Portfolio() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500">
-              © 2024 Aryan Singhal. Built with React, Convex, and caffeine.
+              © 2025 Aryan Singhal.
             </p>
             <div className="flex gap-4">
               <a href="https://github.com/aryansinghal" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-violet-400 transition-colors">

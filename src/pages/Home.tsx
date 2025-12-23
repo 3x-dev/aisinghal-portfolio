@@ -145,7 +145,7 @@ function shuffleIndices(length: number) {
                 Full Stack Developer | AI/ML Engineer
               </p>
               <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
-                I build systems that scale. Currently working on my startup,{" "}
+                I'm 18, studying Artificial Intelligence at Purdue.<br />Currently building{" "}
                 <a
                   href="https://sustaineo-page.vercel.app/"
                   target="_blank"
@@ -154,7 +154,7 @@ function shuffleIndices(length: number) {
                 >
                   GPUnity
                 </a>
-                , and exploring agentic architectures and decentralized inference patterns.
+                .
               </p>
               {/* <p className="text-lg text-violet-400 font-semibold">
                 Learn more about me
