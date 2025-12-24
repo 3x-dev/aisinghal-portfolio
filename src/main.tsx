@@ -56,6 +56,7 @@ export function RouteSyncer() {
  
 export function SmoothScrollController() {
   useEffect(() => {
+    // Handle reduced motion preferences
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis: Lenis | null = null;
     let rafId: number | null = null;
