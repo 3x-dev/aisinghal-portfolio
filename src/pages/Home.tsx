@@ -103,7 +103,7 @@ function shuffleIndices(length: number) {
             <motion.p
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
+              transition={{ delay: 0.45, duration: 0.6, ease: "easeOut" }}
               className="text-lg md:text-xl tracking-[0.35em] uppercase text-[#b29bff] mb-4"
             >
               Hey there, I'm

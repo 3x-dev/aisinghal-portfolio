@@ -7,7 +7,7 @@ const FLOATING_ORBS = [
     color: "rgba(147,51,234,0.45)",
     position: { left: "5%", top: "10%" },
     animate: { x: [0, 80, -60, 0], y: [0, -70, 40, 0], scale: [1, 1.25, 1] },
-    duration: 18,
+    duration: 25,
     delay: 0,
   },
   {
@@ -15,7 +15,7 @@ const FLOATING_ORBS = [
     color: "rgba(236,72,153,0.42)",
     position: { right: "8%", top: "15%" },
     animate: { x: [0, -60, 40, 0], y: [0, 60, -40, 0], scale: [1, 1.3, 1] },
-    duration: 16,
+    duration: 20,
     delay: 2,
   },
   {
@@ -23,7 +23,7 @@ const FLOATING_ORBS = [
     color: "rgba(217,70,239,0.35)",
     position: { left: "18%", bottom: "10%" },
     animate: { x: [0, 90, -30, 0], y: [0, -40, 60, 0], scale: [1, 1.2, 1] },
-    duration: 20,
+    duration: 28,
     delay: 1,
   },
   {
@@ -31,7 +31,7 @@ const FLOATING_ORBS = [
     color: "rgba(168,85,247,0.35)",
     position: { right: "20%", bottom: "12%" },
     animate: { x: [0, -80, 20, 0], y: [0, -20, 40, 0], scale: [1, 1.35, 1] },
-    duration: 22,
+    duration: 30,
     delay: 3,
   },
 ];

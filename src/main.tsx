@@ -21,6 +21,7 @@ import "./types/global.d.ts";
 import { PageTransition, RouteTransitionOverlay } from "@/components/PageTransition.tsx";
 import { AuthContextProvider, AuthFallbackProvider } from "@/hooks/use-auth.tsx";
 
+// Force rebuild to clear session state
 const convexUrl = import.meta.env.VITE_CONVEX_URL;
 const convex = convexUrl ? new ConvexReactClient(convexUrl) : null;
 const missingConvexWarning =
