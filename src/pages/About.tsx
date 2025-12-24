@@ -3,7 +3,7 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 
-const GPUNITY_URL = "https://sustaineo-page.vercel.app/";
+const GPUNITY_URL = "https://www.gpunity.dev/";
 
 const withGPUnityLink = (text: string) =>
   text.split(/(GPUnity)/g).map((part, index) =>

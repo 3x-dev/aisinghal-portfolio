@@ -147,7 +147,7 @@ function shuffleIndices(length: number) {
               <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
                 I'm 18, studying Artificial Intelligence at Purdue.<br />Currently building{" "}
                 <a
-                  href="https://sustaineo-page.vercel.app/"
+                  href="https://www.gpunity.dev/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"

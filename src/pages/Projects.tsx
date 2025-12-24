@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 
-const GPUNITY_URL = "https://sustaineo-page.vercel.app/";
+const GPUNITY_URL = "https://www.gpunity.dev/";
 const DEFAULT_CODE_URL = "https://github.com/3x-dev";
 
 const techIconMap: Record<string, ReactNode> = {
