@@ -10,7 +10,7 @@ import type { MouseEvent } from "react";
 const TYPEWRITER_PREFIX = "I ";
 const TYPEWRITER_PHRASES = [
   "love chasing problems worth solving.",
-  "build things that survive real constraints.",
+  "build things that survive under constraints.",
   "like projects that force me to think.",
   "design for the edge cases everyone forgets.",
   "keep my work honest.",

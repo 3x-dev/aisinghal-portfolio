@@ -62,8 +62,12 @@ export function Navigation() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-black relative group">
-            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-              AS
+            <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black/40 shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+              <img
+                src="/siteicon2.png"
+                alt="Aryan Singhal"
+                className="h-full w-full object-cover"
+              />
             </span>
             <span className="pointer-events-none absolute inset-x-0 -bottom-1 h-px bg-gradient-to-r from-transparent via-violet-500/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </Link>
