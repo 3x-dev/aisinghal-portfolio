@@ -5,6 +5,11 @@ type ReducedEffectsState = {
   hasFinePointer: boolean;
 };
 
+type LegacyMediaQueryList = MediaQueryList & {
+  addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+  removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+};
+
 const getInitialState = (): ReducedEffectsState => {
   if (typeof window === "undefined") {
     return { shouldReduceEffects: false, hasFinePointer: true };
@@ -50,19 +55,21 @@ export function useReducedEffects(): ReducedEffectsState {
 
     const queries = [reducedMotionQuery, reducedDataQuery, finePointerQuery, hoverQuery];
     queries.forEach((query) => {
-      if ("addEventListener" in query) {
-        query.addEventListener("change", update);
-      } else {
-        query.addListener(update);
+      const legacyQuery = query as LegacyMediaQueryList;
+      if (legacyQuery.addEventListener) {
+        legacyQuery.addEventListener("change", update);
+      } else if (legacyQuery.addListener) {
+        legacyQuery.addListener(update);
       }
     });
 
     return () => {
       queries.forEach((query) => {
-        if ("removeEventListener" in query) {
-          query.removeEventListener("change", update);
-        } else {
-          query.removeListener(update);
+        const legacyQuery = query as LegacyMediaQueryList;
+        if (legacyQuery.removeEventListener) {
+          legacyQuery.removeEventListener("change", update);
+        } else if (legacyQuery.removeListener) {
+          legacyQuery.removeListener(update);
         }
       });
     };
