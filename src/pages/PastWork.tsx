@@ -161,42 +161,6 @@ export default function PastWork() {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Presentation className="h-6 w-6 text-emerald-400" />
-                <h2 className="text-3xl font-bold">Snapshot</h2>
-              </div>
-              <Card className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
-                <CardContent className="p-0">
-                  <div className="border-b border-white/5 px-6 py-4 text-sm text-gray-400 flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-emerald-300" />
-                    <span>Recent papers and talks</span>
-                  </div>
-                  <div className="relative h-[320px] overflow-hidden">
-                    <motion.div
-                      className="flex flex-col gap-6 py-6"
-                      animate={{ y: ["0%", "-50%"] }}
-                      transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-                    >
-                      {[...tickerItems, ...tickerItems].map((item, index) => (
-                        <div
-                          key={`${item.title}-${index}`}
-                          className="px-6 flex flex-col gap-2"
-                        >
-                          <p className="text-sm uppercase tracking-[0.35em] text-gray-500">
-                            {item.tag}
-                          </p>
-                          <p className="font-semibold text-white leading-snug line-clamp-2">
-                            {item.title}
-                          </p>
-                          <p className="text-xs text-gray-400">{item.venue}</p>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </section>
 
           <section className="space-y-6">
@@ -204,7 +168,7 @@ export default function PastWork() {
               <Award className="h-6 w-6 text-amber-300" />
               <h2 className="text-3xl font-bold">Posters & Showcases</h2>
             </div>
-            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {posters.map((poster, index) => (
                 <motion.div
                   key={poster.title}
@@ -212,7 +176,7 @@ export default function PastWork() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="snap-center min-w-[280px] md:min-w-[360px]"
+                  className="w-full"
                   style={{ perspective: "1400px" }}
                 >
                   <motion.div

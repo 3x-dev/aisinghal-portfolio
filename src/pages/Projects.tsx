@@ -22,6 +22,7 @@ import {
   Camera,
   Smile,
   CircuitBoard,
+  MessageCircle,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -61,13 +62,7 @@ const techIconMap: Record<string, ReactNode> = {
       className="h-3.5 w-3.5"
     />
   ),
-  "Reddit API": (
-    <img
-      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reddit/reddit-original.svg"
-      alt="Reddit"
-      className="h-3.5 w-3.5"
-    />
-  ),
+  "Reddit API": <MessageCircle className="h-3.5 w-3.5" />,
   LangChain: <Link className="h-3.5 w-3.5" />,
   GCP: <Cloud className="h-3.5 w-3.5" />,
   "Distributed Systems": <Network className="h-3.5 w-3.5" />,
@@ -311,7 +306,7 @@ export default function Projects() {
         "Built a quantum vision transformer that classifies multi-stage Alzheimer’s from MRI scans, reaching 87% accuracy while using a variational quantum circuit that cuts compute cost and runs significantly faster than a comparable classical model.",
       learned:
         "Had to balance theory with pragmatism, translating abstract quantum ML ideas into a pipeline that ingests thousands of scans, trains reliably, and exposes results clinicians can interpret instead of just another black box.",
-      tech: ["JAX", "PyTorch", "TensorCircuit", "Computer Vision"],
+      tech: ["Python", "JAX", "PyTorch", "TensorCircuit", "Computer Vision"],
       github: "https://github.com/3x-dev/QViSTA",
     },
     {

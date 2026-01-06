@@ -341,7 +341,7 @@ function shuffleIndices(length: number) {
               >
                 <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-zinc-500">
                   <span className="h-px w-10 bg-zinc-700/70" />
-                  Around the web
+                  Find me on
                   <span className="h-px w-10 bg-zinc-700/70" />
                 </div>
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">

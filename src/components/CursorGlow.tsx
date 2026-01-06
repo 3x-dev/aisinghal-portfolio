@@ -58,13 +58,17 @@ export function CursorGlow() {
         willChange: "transform",
       }}
     >
-      <span className="relative block h-10 w-10">
-        {/* dark outer glow */}
-        <span className="absolute inset-0 rounded-full bg-violet-700/40 blur-2xl" />
-        {/* medium inner glow */}
-        <span className="absolute inset-1 rounded-full bg-violet-600/60 blur-lg" />
+      <span className="relative block h-16 w-16">
+        {/* far halo */}
+        <span className="absolute -inset-8 rounded-full bg-violet-400/70 blur-[130px] mix-blend-screen" />
+        {/* wide outer glow */}
+        <span className="absolute -inset-4 rounded-full bg-fuchsia-400/70 blur-[90px] mix-blend-screen" />
+        {/* core bloom */}
+        <span className="absolute inset-0 rounded-full bg-violet-500/90 blur-[60px] mix-blend-screen" />
+        {/* tight inner glow */}
+        <span className="absolute inset-2 rounded-full bg-white/70 blur-2xl mix-blend-screen" />
         {/* bright center dot */}
-        <span className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-300" />
+        <span className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_30px_rgba(255,255,255,0.85)]" />
       </span>
     </motion.div>
   );
