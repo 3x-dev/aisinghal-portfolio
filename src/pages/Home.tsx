@@ -419,6 +419,9 @@ function shuffleIndices(length: number) {
                     </div>
                   </div>
                 </motion.div>
+                <p className="mt-3 text-center text-sm text-gray-400">
+                  Me at Kauai, Hawaii this past winter break!
+                </p>
               </div>
             </motion.div>
           </div>

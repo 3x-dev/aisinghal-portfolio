@@ -125,9 +125,10 @@ export default function PastWork() {
                       key={pub.title}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
+                      whileHover={{ y: -6, scale: 1.01 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ delay: index * 0.05 }}
-                      className="relative pl-10"
+                      transition={{ delay: index * 0.05, type: "spring", stiffness: 160, damping: 18 }}
+                      className="relative pl-10 group"
                     >
                       <div className="absolute left-0 top-4 -translate-x-1/2">
                         <motion.span
@@ -136,7 +137,8 @@ export default function PastWork() {
                           transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
                         />
                       </div>
-                      <Card className="rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-md">
+                      <Card className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-md transition-all duration-300 group-hover:-translate-y-1 group-hover:border-violet-400/40 group-hover:shadow-[0_18px_45px_rgba(124,58,237,0.35)]">
+                        <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 bg-gradient-to-br from-violet-500/15 via-fuchsia-500/10 to-transparent" />
                         <CardContent className="p-6 space-y-4">
                           <div className="flex flex-wrap items-center justify-between gap-3">
                             <h3 className="text-xl font-bold">{pub.title}</h3>
@@ -176,7 +178,7 @@ export default function PastWork() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="w-full"
+                  className="w-full group"
                   style={{ perspective: "1400px" }}
                 >
                   <motion.div
@@ -185,7 +187,8 @@ export default function PastWork() {
                     className="h-full"
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    <Card className="relative h-full rounded-3xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl overflow-hidden shadow-[0px_20px_50px_rgba(0,0,0,0.35)]">
+                    <Card className="relative h-full rounded-3xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl overflow-hidden shadow-[0px_20px_50px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:border-amber-300/40 group-hover:shadow-[0_24px_60px_rgba(251,191,36,0.3)]">
+                      <div className="pointer-events-none absolute -inset-6 opacity-0 transition duration-300 group-hover:opacity-100 bg-gradient-to-br from-amber-400/15 via-rose-400/10 to-transparent blur-2xl" />
                       <motion.div
                         className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/10 via-rose-500/10 to-transparent opacity-60"
                         animate={{ opacity: [0.35, 0.7, 0.35], scale: [1, 1.02, 1] }}
