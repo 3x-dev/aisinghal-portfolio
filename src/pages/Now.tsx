@@ -57,27 +57,39 @@ const SHOW_GOODREADS_SECTION = false;
 
 const humanCompatibleCover = new URL("../../books/human_compatible.png", import.meta.url).href;
 const alignmentProblemCover = new URL("../../books/alignment_problem.png", import.meta.url).href;
+const momTestCover = new URL("../../books/mom_test.jpg", import.meta.url).href;
 
 const nowReadingBooks = [
   {
-    title: "Human Compatible",
-    subtitle: "Artificial Intelligence and the Problem of Control",
+    title: "Human\nCompatible",
+    subtitle: "Artificial Intelligence and the\nProblem of Control",
     author: "Stuart Russell",
     image: humanCompatibleCover,
     summary:
-      "Russell maps out why traditional reward-driven AI could drift from human objectives and lays out a blueprint for provably beneficial systems that stay deferential to human intent.",
+      "Russell explains why reward-driven AI can drift away from what humans actually want, and outlines how to build systems that stay aligned with human intent.",
     palette: "from-emerald-500/30 via-cyan-500/10 to-transparent",
   },
   {
-    title: "The Alignment Problem",
-    subtitle: "Machine Learning and Human Values",
+    title: "The Alignment\nProblem",
+    subtitle: "Machine Learning and Human\nValues",
     author: "Brian Christian",
     image: alignmentProblemCover,
     summary:
-      "Christian blends history and reporting to show how data, incentives, and opaque models can encode human bias, cataloging the technical and ethical hurdles in aligning ML with society.",
+      "Christian shows how history and reporting reveal the ways data, incentives, and opaque models bake human bias into ML, and why aligning these systems with society is harder than it looks.",
     palette: "from-sky-500/30 via-violet-500/10 to-transparent",
   },
+  {
+    title: "The Mom\nTest",
+    subtitle: "How to Talk to Customers and Learn\nif Your Business is a Good Idea",
+    author: "Rob Fitzpatrick",
+    image: momTestCover,
+    summary:
+      "A guide to customer conversations that avoids leading questions and helps you validate ideas with evidence.",
+    palette: "from-amber-500/30 via-rose-500/10 to-transparent",
+  },
 ] as const;
+
+const nightstandMarqueeBooks = [...nowReadingBooks, ...nowReadingBooks];
 
 export default function Now() {
   const sections = [
@@ -85,36 +97,27 @@ export default function Now() {
       icon: Code,
       title: "Building",
       items: [
-        "GPUnity: automatically recommends, provisions, and manages hardware",
-        "A pricing + availability engine for multi-cloud GPU markets",
-        "Agentic workflows powered by MCP for infra automation"
-      ],
-    },
-    {
-      icon: Brain,
-      title: "Exploring",
-      items: [
-        "Unified abstractions for heterogeneous compute (CUDA, ROCm, TPU)",
-        "Autonomous agents that can provision, benchmark, and migrate workloads",
-        "Patterns for reducing inference cost without killing performance"
-      ],
-    },
-    {
-      icon: BookOpen,
-      title: "Learning",
-      items: [
-        "Systems-level design for large-scale compute",
-        "Runtime scheduling strategies and kernel-level bottlenecks",
-        "Compiler-driven optimizations in ML workloads"
+        "GPUnity: a decision engine that analyzes ML workloads and recommends the right GPUs",
+        "GPU pricing and availability aggregation across multiple cloud providers",
+        "Agent-driven infra workflows for provisioning, setup, and teardown"
       ],
     },
     {
       icon: Wrench,
-      title: "Problems I'm Thinking About",
+      title: "Stress-testing",
       items: [
-        "How to elastically move workloads between providers without downtime",
-        "How to model GPU markets with real price volatility",
-        "Why infra teams keep reinventing the same broken orchestration stack"
+        "Reasoning about the same workload across different GPU backends (CUDA, ROCm, etc.)",
+        "Benchmarking jobs to compare performance and cost across providers",
+        "Finding practical ways to cut inference cost without blowing up latency or accuracy"
+      ],
+    },
+    {
+      icon: Brain,
+      title: "Thinking",
+      items: [
+        "How wrong GPU recommendations can be before users stop trusting the system",
+        "Which signals in a codebase are real versus misleading",
+        "Where automation should stop and humans should stay in the loop"
       ],
     },
   ];
@@ -222,14 +225,9 @@ export default function Now() {
                               whileHover={{ x: 6, transition: { duration: 0.12 } }}
                               className="text-lg text-gray-300 flex items-start gap-3"
                             >
-                              <motion.span
-                                className="mt-1 text-violet-200"
-                                animate={{ opacity: [0.5, 1, 0.5] }}
-                                transition={{ duration: 2, repeat: Infinity, delay: itemIdx * 0.2 }}
-                                whileHover={{ rotate: 90, scale: 1.1, transition: { duration: 0.1 } }}
-                              >
+                              <span className="mt-1 text-violet-200">
                                 →
-                              </motion.span>
+                              </span>
                               <span className="relative">
                                 {withGPUnityLink(item)}
                                 <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-150 group-hover:opacity-80" />
@@ -304,7 +302,7 @@ export default function Now() {
             </motion.div>
           )}
 
-          <section className="mt-16 space-y-6">
+          <section className="mt-16 space-y-4">
             <div className="flex items-center gap-3">
               <BookOpen className="h-6 w-6 text-amber-300" />
               <div>
@@ -313,57 +311,77 @@ export default function Now() {
               </div>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              {nowReadingBooks.map((book, index) => (
-                <motion.div
-                  key={book.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group relative"
-                >
-                  <div
-                    className={`pointer-events-none absolute -inset-[1px] rounded-3xl opacity-0 blur-3xl transition duration-500 group-hover:opacity-100 bg-gradient-to-r ${book.palette}`}
-                  />
-                  <Card className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-xl">
-                    <div className="pointer-events-none absolute -top-32 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-gradient-to-tr from-amber-500/15 via-white/0 to-transparent blur-[120px] opacity-0 transition group-hover:opacity-40" />
-                    <CardContent className="relative z-10 p-6 flex flex-col gap-5 md:flex-row md:items-center">
-                      <motion.div
-                        className="relative shrink-0 flex justify-center"
-                        whileHover={{ rotateZ: -1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <motion.div
-                          className="absolute -inset-2 rounded-[28px] border border-white/10 opacity-0 group-hover:opacity-100 transition"
-                          animate={{ rotate: [0, 2, -2, 0] }}
-                          transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: index * 0.4 }}
-                        />
-                        <img
-                          src={book.image}
-                          alt={`${book.title} cover`}
-                          className="relative h-48 w-32 rounded-[26px] object-cover shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
-                          loading="lazy"
-                        />
-                        <motion.div
-                          className="absolute -bottom-4 left-1/2 h-1.5 w-2/3 -translate-x-1/2 rounded-full bg-gradient-to-r from-white/30 via-white/10 to-transparent blur-xl opacity-60"
-                          animate={{ scaleX: [0.9, 1.1, 0.9], opacity: [0.3, 0.6, 0.3] }}
-                          transition={{ duration: 4, repeat: Infinity }}
-                        />
-                      </motion.div>
-                      <div className="space-y-3 flex-1">
-                        <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">currently reading</p>
-                        <div>
-                          <h3 className="text-2xl font-semibold text-white">{book.title}</h3>
-                          <p className="text-md text-gray-400">{book.subtitle}</p>
-                        </div>
-                        <p className="text-sm text-amber-200">{book.author}</p>
-                        <p className="text-sm text-gray-300 leading-relaxed">{book.summary}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+            <div className="nightstand-marquee -mx-4 rounded-[32px] border border-white/10 bg-zinc-950/60 px-4 py-6">
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 rounded-[32px] bg-gradient-to-r from-black via-black/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 rounded-[32px] bg-gradient-to-l from-black via-black/70 to-transparent" />
+              <div className="nightstand-track">
+                {nightstandMarqueeBooks.map((book, index) => {
+                  const isClone = index >= nowReadingBooks.length;
+                  const titleText = book.title.replace(/\n/g, " ");
+
+                  return (
+                    <motion.div
+                      key={`${book.title}-${index}`}
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ delay: (index % nowReadingBooks.length) * 0.1 }}
+                      whileHover={{
+                        y: -8,
+                        scale: 1.03,
+                        rotateZ: -0.25,
+                        boxShadow: "0 24px 45px rgba(0,0,0,0.4)",
+                        transition: { type: "spring", stiffness: 260, damping: 18 },
+                      }}
+                      whileTap={{ scale: 0.98, y: -4 }}
+                      className="group relative min-w-[300px] sm:min-w-[360px] lg:min-w-[420px]"
+                      aria-hidden={isClone}
+                    >
+                      <div
+                        className={`pointer-events-none absolute -inset-[1px] rounded-3xl opacity-25 blur-3xl bg-gradient-to-r ${book.palette}`}
+                      />
+                      <Card className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+                        <div className="pointer-events-none absolute -top-32 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-gradient-to-tr from-amber-500/15 via-white/0 to-transparent blur-[120px] opacity-25" />
+                        <CardContent className="relative z-10 p-6 flex flex-col gap-4 md:flex-row md:items-start">
+                          <motion.div
+                            className="relative shrink-0 flex justify-center"
+                            whileHover={{ rotateZ: -1 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <motion.div
+                              className="absolute -inset-2 rounded-[28px] border border-white/10 opacity-0 group-hover:opacity-100 transition"
+                              animate={{ rotate: [0, 2, -2, 0] }}
+                              transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: index * 0.4 }}
+                            />
+                            <img
+                              src={book.image}
+                              alt={`${titleText} cover`}
+                              className="relative h-48 w-32 rounded-[26px] object-cover shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
+                              loading="lazy"
+                            />
+                            <motion.div
+                              className="absolute -bottom-4 left-1/2 h-1.5 w-2/3 -translate-x-1/2 rounded-full bg-gradient-to-r from-white/30 via-white/10 to-transparent blur-xl opacity-60"
+                              animate={{ scaleX: [0.9, 1.1, 0.9], opacity: [0.3, 0.6, 0.3] }}
+                              transition={{ duration: 4, repeat: Infinity }}
+                            />
+                          </motion.div>
+                          <div className="space-y-2 flex-1">
+                            <div>
+                              <h3 className="text-2xl font-semibold text-white leading-tight whitespace-pre-line">
+                                {book.title}
+                              </h3>
+                              <p className="text-md text-gray-400 leading-snug whitespace-pre-line">
+                                {book.subtitle}
+                              </p>
+                            </div>
+                            <p className="text-sm text-amber-200">{book.author}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </section>
 

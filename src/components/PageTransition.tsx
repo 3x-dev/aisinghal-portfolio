@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 type PageTransitionProps = {
   children: ReactNode;
@@ -10,8 +11,9 @@ const pageEase = [0.33, 1, 0.68, 1] as const;
 
 export function PageTransition({ children }: PageTransitionProps) {
   const prefersReducedMotion = useReducedMotion();
+  const { shouldReduceEffects } = useReducedEffects();
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || shouldReduceEffects) {
     return <>{children}</>;
   }
 
@@ -36,6 +38,7 @@ export function PageTransition({ children }: PageTransitionProps) {
 export function RouteTransitionOverlay() {
   const location = useLocation();
   const prefersReducedMotion = useReducedMotion();
+  const { shouldReduceEffects } = useReducedEffects();
   const [isActive, setIsActive] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const [hasMounted, setHasMounted] = useState(false);
@@ -46,7 +49,7 @@ export function RouteTransitionOverlay() {
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion || !hasMounted) {
+    if (prefersReducedMotion || shouldReduceEffects || !hasMounted) {
       return;
     }
 
@@ -62,7 +65,7 @@ export function RouteTransitionOverlay() {
     return () => clearTimeout(timeout);
   }, [location.pathname, prefersReducedMotion, hasMounted]);
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || shouldReduceEffects) {
     return null;
   }
 
@@ -100,4 +103,3 @@ export function RouteTransitionOverlay() {
     </AnimatePresence>
   );
 }
-

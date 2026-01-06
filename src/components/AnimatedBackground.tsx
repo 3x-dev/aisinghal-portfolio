@@ -1,5 +1,6 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 const FLOATING_ORBS = [
   {
@@ -45,17 +46,13 @@ const PARTICLE_CONFIGS = Array.from({ length: 16 }, (_, i) => ({
 }));
 
 export function AnimatedBackground() {
+  const { shouldReduceEffects, hasFinePointer } = useReducedEffects();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
-    const hasFinePointer = window.matchMedia("(pointer: fine)");
-
     // Skip expensive mouse tracking on coarse pointers or when motion is reduced
-    if (prefersReducedMotion.matches || !hasFinePointer.matches) {
+    if (shouldReduceEffects || !hasFinePointer) {
       return;
     }
 
@@ -85,7 +82,7 @@ export function AnimatedBackground() {
       window.removeEventListener("mousemove", handleMouseMove);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [mouseX, mouseY]);
+  }, [hasFinePointer, mouseX, mouseY, shouldReduceEffects]);
 
   // Create motion templates for complex style strings
   const orb1Left = useMotionTemplate`${mouseX}px`;
@@ -98,6 +95,21 @@ export function AnimatedBackground() {
   
   const maskImage = useMotionTemplate`radial-gradient(260px circle at ${mouseX}px ${mouseY}px, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 45%, transparent 70%)`;
   const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(53,16,94,0.7), rgba(22,5,45,0.4) 40%, transparent 65%)`;
+
+  if (shouldReduceEffects) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 20%, rgba(147,51,234,0.25), transparent 45%), radial-gradient(circle at 80% 30%, rgba(236,72,153,0.22), transparent 50%), radial-gradient(circle at 50% 80%, rgba(16,185,129,0.18), transparent 55%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">

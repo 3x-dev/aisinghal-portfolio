@@ -107,7 +107,7 @@ export default function PastWork() {
               <span className="animated-gradient-text">PAST WORK</span>
             </h1>
             <p className="text-2xl text-gray-400 max-w-3xl">
-              My past research work in NLP, computer vision, and LLMs.
+              An overview of my past advancements in research.
             </p>
           </div>
 
@@ -202,7 +202,7 @@ export default function PastWork() {
           <section className="space-y-6">
             <div className="flex items-center gap-3">
               <Award className="h-6 w-6 text-amber-300" />
-              <h2 className="text-3xl font-bold">Posters & showcases</h2>
+              <h2 className="text-3xl font-bold">Posters & Showcases</h2>
             </div>
             <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
               {posters.map((poster, index) => (

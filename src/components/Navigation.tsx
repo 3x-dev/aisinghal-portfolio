@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 export function Navigation() {
   const location = useLocation();
   const [navOpacity, setNavOpacity] = useState(1);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { shouldReduceEffects } = useReducedEffects();
 
   useEffect(() => {
     const FADE_DISTANCE = 240;
@@ -50,14 +52,19 @@ export function Navigation() {
     { path: "/contact", label: "Contact" },
   ];
 
+  const navSurface = isScrolled ? "bg-black/80" : "bg-black/40";
+  const navBlur = shouldReduceEffects
+    ? ""
+    : isScrolled
+      ? "backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.45)]"
+      : "backdrop-blur-md";
+
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: navOpacity }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 transition-[background-color,opacity] duration-300 ${
-        isScrolled ? "bg-black/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.45)]" : "bg-black/40 backdrop-blur-md"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 transition-[background-color,opacity] duration-300 ${navSurface} ${navBlur}`}
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">

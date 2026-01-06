@@ -183,3 +183,37 @@
   width: 0;
   height: 0;
 }
+
+@keyframes nightstand-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.nightstand-marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.nightstand-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: nightstand-scroll 26s linear infinite;
+  align-items: stretch;
+  will-change: transform;
+}
+
+.nightstand-marquee:hover .nightstand-track,
+.nightstand-marquee:focus-within .nightstand-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nightstand-track {
+    animation: none;
+  }
+}

@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { PageTransition, RouteTransitionOverlay } from "@/components/PageTransition.tsx";
 import { AuthContextProvider, AuthFallbackProvider } from "@/hooks/use-auth.tsx";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 // Force rebuild to clear session state
 const convexUrl = import.meta.env.VITE_CONVEX_URL;
@@ -56,9 +57,9 @@ export function RouteSyncer() {
 }
  
 export function SmoothScrollController() {
+  const { shouldReduceEffects } = useReducedEffects();
+
   useEffect(() => {
-    // Handle reduced motion preferences
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lenis: Lenis | null = null;
     let rafId: number | null = null;
 
@@ -92,25 +93,14 @@ export function SmoothScrollController() {
       }
     };
 
-    const handleMotionChange = (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        stopLenis();
-      } else {
-        startLenis();
-      }
-    };
-
-    if (!mediaQuery.matches) {
+    if (!shouldReduceEffects) {
       startLenis();
     }
 
-    mediaQuery.addEventListener("change", handleMotionChange);
-
     return () => {
-      mediaQuery.removeEventListener("change", handleMotionChange);
       stopLenis();
     };
-  }, []);
+  }, [shouldReduceEffects]);
 
   return null;
 }

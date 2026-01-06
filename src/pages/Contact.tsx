@@ -32,7 +32,7 @@ export default function Contact() {
       className: "border-blue-600/50 bg-blue-600/10 text-blue-300 hover:bg-blue-600/30 hover:border-blue-400 hover:text-blue-200",
     },
     {
-      label: "X",
+      label: "X/Twitter",
       href: "https://twitter.com/ai_singhal",
       icon: XLogo,
       className: "border-zinc-500/60 bg-zinc-900/60 text-zinc-200 hover:bg-zinc-800/80 hover:border-zinc-300 hover:text-white",
@@ -89,7 +89,7 @@ export default function Contact() {
                   <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
                     Got an idea? A problem to solve? Or just want to chat?
                     <br />
-                    Drop me a line.
+                    Drop me a line!
                   </p>
 
                   <div className="w-full flex flex-col gap-6 items-center">

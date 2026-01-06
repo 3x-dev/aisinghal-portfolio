@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 export default function Portfolio() {
+  const { shouldReduceEffects, hasFinePointer } = useReducedEffects();
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const followerX = useMotionValue(0);
@@ -13,6 +15,10 @@ export default function Portfolio() {
   const followerRadius = 192; // half of 384px (w-96/h-96) to keep center aligned
 
   useEffect(() => {
+    if (shouldReduceEffects || !hasFinePointer) {
+      return;
+    }
+
     let rafId: number | null = null;
     let latestEvent: MouseEvent | null = null;
 
@@ -39,7 +45,7 @@ export default function Portfolio() {
       window.removeEventListener("mousemove", handleMouseMove);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [followerX, followerY, followerRadius]);
+  }, [followerX, followerY, followerRadius, hasFinePointer, shouldReduceEffects]);
 
   const projects = [
     {
@@ -74,14 +80,16 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Cursor follower */}
-      <motion.div
-        className="fixed w-96 h-96 rounded-full pointer-events-none z-0 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)",
-          x: followerX,
-          y: followerY,
-        }}
-      />
+      {!shouldReduceEffects && hasFinePointer && (
+        <motion.div
+          className="fixed w-96 h-96 rounded-full pointer-events-none z-0 blur-3xl"
+          style={{
+            background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)",
+            x: followerX,
+            y: followerY,
+          }}
+        />
+      )}
 
       {/* Hero Section */}
       <motion.section

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 export type GoodreadsShelf = "currently-reading" | "read" | "to-read";
 
@@ -105,19 +106,7 @@ export function GoodreadsRail({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia === "undefined") {
-      return;
-    }
-
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setPrefersReducedMotion(media.matches);
-    updatePreference();
-    media.addEventListener("change", updatePreference);
-    return () => media.removeEventListener("change", updatePreference);
-  }, []);
+  const { shouldReduceEffects } = useReducedEffects();
 
   useEffect(() => {
     let cancelled = false;
@@ -174,7 +163,7 @@ export function GoodreadsRail({
   );
 
   useEffect(() => {
-    if (!containerRef.current || !hasLoop || prefersReducedMotion) {
+    if (!containerRef.current || !hasLoop || shouldReduceEffects) {
       return;
     }
 
@@ -199,7 +188,7 @@ export function GoodreadsRail({
 
     rafId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafId);
-  }, [hasLoop, isHovered, prefersReducedMotion, visibleBooks.length]);
+  }, [hasLoop, isHovered, shouldReduceEffects, visibleBooks.length]);
 
   const hasBooks = visibleBooks.length > 0;
   const booksToRender = state === "ready" && hasBooks ? loopedBooks : visibleBooks;

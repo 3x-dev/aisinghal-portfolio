@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
@@ -23,6 +23,24 @@ const TYPEWRITER_PHRASES = [
   "think better when the stakes are high.",
 ] as const;
 
+const XLogo = () => (
+  <svg
+    className="h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    role="img"
+  >
+    <path d="M3 2h4.7l4.02 5.5L15.4 2H21l-6.79 8.7L21.5 22h-4.7l-4.4-5.97L8.5 22H3l7.04-9.04z" />
+  </svg>
+);
+
+const ScholarIcon = () => (
+  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" />
+  </svg>
+);
+
 export default function Home() {
   const [displayText, setDisplayText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -32,6 +50,32 @@ export default function Home() {
   const tiltY = useMotionValue(0);
   const tiltXSpring = useSpring(tiltX, { stiffness: 220, damping: 18, mass: 0.45 });
   const tiltYSpring = useSpring(tiltY, { stiffness: 220, damping: 18, mass: 0.45 });
+  const socialLinks = [
+    {
+      label: "GitHub",
+      href: "https://github.com/3x-dev",
+      icon: Github,
+      className: "border-violet-500/40 bg-violet-500/10 text-violet-200 hover:border-violet-300 hover:bg-violet-500/20",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/aryan-singhal-ai",
+      icon: Linkedin,
+      className: "border-sky-500/40 bg-sky-500/10 text-sky-200 hover:border-sky-300 hover:bg-sky-500/20",
+    },
+    {
+      label: "X",
+      href: "https://twitter.com/ai_singhal",
+      icon: XLogo,
+      className: "border-zinc-500/50 bg-zinc-500/10 text-zinc-200 hover:border-zinc-300 hover:bg-zinc-400/20",
+    },
+    {
+      label: "Google Scholar",
+      href: "https://scholar.google.com/citations?user=QJn7KLkAAAAJ&hl=en",
+      icon: ScholarIcon,
+      className: "border-emerald-500/40 bg-emerald-500/10 text-emerald-200 hover:border-emerald-300 hover:bg-emerald-500/20",
+    },
+  ];
 
   useEffect(() => {
     shuffledOrder.current = shuffleIndices(TYPEWRITER_PHRASES.length);
@@ -202,7 +246,7 @@ function shuffleIndices(length: number) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
-                className="flex flex-wrap gap-4 pb-2 justify-center lg:justify-start"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-2 justify-center lg:justify-start"
               >
                 <motion.div
                   whileHover={{
@@ -242,7 +286,7 @@ function shuffleIndices(length: number) {
                   }}
                   whileTap={{ scale: 0.97, y: -2 }}
                   transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                  className="rounded-2xl"
+                  className="rounded-2xl w-full sm:w-fit"
                 >
                   <Button
                     size="lg"
@@ -269,7 +313,7 @@ function shuffleIndices(length: number) {
                   }}
                   whileTap={{ scale: 0.97, y: -2 }}
                   transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                  className="rounded-2xl w-full flex justify-center sm:w-auto"
+                  className="rounded-2xl w-full flex justify-center sm:col-span-2 sm:w-fit sm:justify-self-center"
                 >
                   <Button
                     size="lg"
@@ -287,6 +331,44 @@ function shuffleIndices(length: number) {
                     </Link>
                   </Button>
                 </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.15 }}
+                className="mt-8 flex flex-col gap-4 items-center lg:items-start"
+              >
+                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-zinc-500">
+                  <span className="h-px w-10 bg-zinc-700/70" />
+                  Around the web
+                  <span className="h-px w-10 bg-zinc-700/70" />
+                </div>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                  {socialLinks.map((link, index) => (
+                    <motion.a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={link.label}
+                      whileHover={{
+                        y: -6,
+                        scale: 1.14,
+                        boxShadow: "0 18px 35px rgba(10, 10, 20, 0.55)",
+                      }}
+                      whileTap={{ scale: 0.96, y: -2 }}
+                      transition={{ type: "spring", stiffness: 320, damping: 16, delay: index * 0.03 }}
+                      className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur ${link.className}`}
+                    >
+                      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <span className="absolute inset-0 rounded-full bg-white/10 opacity-0 blur-md transition duration-300 group-hover:opacity-70" />
+                      <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                        <link.icon className="h-5 w-5" />
+                      </span>
+                    </motion.a>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
 

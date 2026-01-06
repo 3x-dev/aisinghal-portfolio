@@ -38,14 +38,14 @@ export default function About() {
       title: "GPUnity",
       description: (
         <>
-          Building agents that read your codebase, infer workload needs, and route jobs to best-fit GPUs across clouds under budget constraints.{" "}
+          Building agents that analyze ML code, reason about workload needs, and surface GPU options across clouds with explicit cost and risk tradeoffs.{" "}
           <a
             href={GPUNITY_URL}
             target="_blank"
             rel="noreferrer"
             className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
           >
-            Join the waitlist
+            We're live!
           </a>
           .
         </>
@@ -198,7 +198,7 @@ export default function About() {
               />
               <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
                 <p>
-                  I'm a freshman at Purdue studying Artificial Intelligence (planning on double majoring in CS).
+                  I'm a first-year at Purdue studying Artificial Intelligence (planning on double majoring in CS).
                 </p>
                 <p>
                   Right now most of my time goes into{" "}
@@ -209,8 +209,8 @@ export default function About() {
                     className="text-violet-300 underline decoration-dotted underline-offset-4 transition-colors hover:text-violet-100"
                   >
                     GPUnity
-                  </a>{" "}
-                   (feel free to join the waitlist!), a GPU orchestration platform where agents read your codebase, figure out what kind of jobs you are running, and ship them to the right GPUs across different cloud providers.
+                  </a>{""}
+                  , a GPU decision system where agents read an ML codebase, infer what kind of workload it represents, and recommend GPU options across cloud providers with clear cost and risk tradeoffs.
                 </p>
                 <p>
                   Most of what I care about lives between{" "}
