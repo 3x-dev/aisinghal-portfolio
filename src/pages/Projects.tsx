@@ -301,11 +301,11 @@ export default function Projects() {
       title: "QViSTA",
       tagline: "Quantum vision transformer for Alzheimer’s diagnosis",
       problem:
-        "Alzheimer’s is usually confirmed when damage is already severe, which limits how much treatment can do and leaves little room for early intervention.",
+        "Alzheimer’s stages are hard to tell apart from MRI scans, and many models either oversimplify the problem or rely on heavy, compute-intensive architectures that don’t scale well.",
       solution:
-        "Built a quantum vision transformer that classifies multi-stage Alzheimer’s from MRI scans, reaching 87% accuracy while using a variational quantum circuit that cuts compute cost and runs significantly faster than a comparable classical model.",
+        "A hybrid quantum–classical vision transformer for multi-stage Alzheimer’s classification from MRI scans. It swaps parts of a standard ViT with variational quantum circuits to reduce parameter count while maintaining comparable performance to classical models.",
       learned:
-        "Had to balance theory with pragmatism, translating abstract quantum ML ideas into a pipeline that ingests thousands of scans, trains reliably, and exposes results clinicians can interpret instead of just another black box.",
+        "Most of the real work wasn’t quantum theory. It was data balancing, stabilizing training, and figuring out where quantum components actually add value versus unnecessary complexity.",
       tech: ["Python", "JAX", "PyTorch", "TensorCircuit", "Computer Vision"],
       github: "https://github.com/3x-dev/QViSTA",
     },
@@ -313,11 +313,11 @@ export default function Projects() {
       title: "Temporal GNN for Political Polarization",
       tagline: "Modeling how Redditors political opinions change over time",
       problem:
-        "Most moderation tools treat communities as static, so they miss the early stages of users drifting into more extreme spaces across platforms and subcommunities.",
+        "Most moderation and analysis tools treat online communities as static, so they miss how users gradually drift toward more polarized or extreme spaces over time.",
       solution:
-        "Engineered a multi-modal temporal graph neural network over 2K+ subreddits that tracks user migration paths and topic shifts, improving polarization clustering accuracy from 77 percent to 88 percent and enabling longitudinal analysis over 500K posts.",
+        "Worked alongside researchers at UT Austin to build a temporal graph neural network over Reddit that models how users move between subreddits and how their topics evolve. This made it possible to track polarization trajectories over time instead of taking one-off snapshots.",
       learned:
-        "Learned how to actually ship graph models at scale, from CUDA profiling and batching to building NetworkX pipelines that do not collapse when you stream real social data into them.",
+        "Temporal graphs are expensive and fragile at scale. Getting this to work meant batching edges, profiling GPU memory, and rethinking how often the graph actually needs to update to be meaningful.",
       tech: ["Python", "PyTorch", "NetworkX", "Reddit API"],
       github: DEFAULT_CODE_URL,
     },
@@ -325,25 +325,13 @@ export default function Projects() {
       title: "Hate Speech Ensemble Model",
       tagline: "Severity-aware moderation for extremist forums",
       problem:
-        "Most toxicity filters output a single label and ignore severity, nuance, and context, which is useless when you are studying extremist communities where language is coded and variable.",
+        "Most hate speech models flatten everything into a single label, losing nuance around severity, intent, and context. That makes them unreliable in extremist spaces where language is subtle and unevenly distributed.",
       solution:
-        "Designed an ensemble of regressors and NLP models that scores hate speech on a 1 to 6 severity scale across multiple categories, trained on hundreds of thousands of posts and tuned for both robustness and sample efficiency with semi-supervised learning.",
+        "Worked alongside researchers at UC Santa Barbara to build an ensemble NLP system that scores hate speech by severity. It combines tree-based models and neural models, and uses a semi-supervised pipeline to handle scarce and imbalanced labels.",
       learned:
-        "Working with real extremist content forced me to think about annotation cost, label noise, and how to design evaluation that captures harm instead of just checking if a threshold is crossed.",
-      tech: ["Python", "PyTorch", "Transformers"],
+        "Real hate speech data is sparse and skewed. Getting useful results meant learning how to train with semi-supervised signals, manage class imbalance, and evaluate models when clean labels are the exception.",
+      tech: ["Python", "PyTorch"],
       github: DEFAULT_CODE_URL,
-    },
-    {
-      title: "Forkprint",
-      tagline: "Repository intelligence for fast handoffs",
-      problem:
-        "New collaborators lose hours figuring out how a repo actually works, especially when the documentation is stale or fragmented across issues and readmes.",
-      solution:
-        "Built Forkprint to ingest repositories and generate structured summaries of architecture, APIs, and workflows, making it easier to onboard and audit projects quickly.",
-      learned:
-        "Learned how to balance automation with accuracy, especially when extracting consistent metadata from diverse codebases and API styles.",
-      tech: ["TypeScript", "JavaScript", "RESTful API"],
-      github: "https://github.com/3x-dev/Forkprint",
     },
     {
       title: "Multilingual Claim Verification Pipeline",
@@ -354,9 +342,21 @@ export default function Projects() {
         "Built an evaluation and inference pipeline for multilingual LLMs that verifies claims in 15 languages using multiple strategies, instrumentation, and custom bias metrics to measure where models break and how far performance drops between language families.",
       learned:
         "This project taught me that production ML is mostly about data design, metrics, and infrastructure, and that cross-lingual fairness is a systems problem as much as it is a modeling problem.",
-      tech: ["Python", "Hugging Face", "Docker", "Redis", "AWS"],
+      tech: ["Python", "Hugging Face", "AWS"],
       github:
         "https://github.com/3x-dev/Comparative-Study-of-Bias-and-Accuracy-in-Multilingual-LLMs-for-Cross-Language-Claim-Verification",
+    },
+    {
+      title: "Forkprint",
+      tagline: "Fork over waste",
+      problem:
+        "Food waste mostly comes from bad tracking and vague awareness, not people being careless. In daily life, expiration dates get ignored, habits go unmeasured, and hence sustainability stays abstract.",
+      solution:
+        "Built a web app that helps users to turnsustainability into something concrete. It helps users track food expiration, log waste, and get AI-driven suggestions to reduce waste and make better use of what they already have.",
+      learned:
+        "Making environmental impact measurable matters more than adding flashy features. If a tool fits naturally into daily habits, people actually change their behavior.",
+      tech: ["TypeScript", "JavaScript", "RESTful API"],
+      github: "https://github.com/3x-dev/Forkprint",
     },
   ];
   const totalProjects = projects.length;
