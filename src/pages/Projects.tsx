@@ -339,10 +339,10 @@ export default function Projects() {
       problem:
         "Most fact-checking pipelines work well for English and fail silently in low-resource languages, which creates a huge gap in how misinformation is handled globally.",
       solution:
-        "Built an evaluation and inference pipeline for multilingual LLMs that verifies claims in 15 languages using multiple strategies, instrumentation, and custom bias metrics to measure where models break and how far performance drops between language families.",
+        "Built a multilingual claim verification pipeline that evaluates LLMs across 15 languages using direct inference, self-translation, and pre-translation. The system instruments accuracy, inconclusives, and translation bias to surface exactly where models degrade across language families and model sizes.",
       learned:
-        "This project taught me that production ML is mostly about data design, metrics, and infrastructure, and that cross-lingual fairness is a systems problem as much as it is a modeling problem.",
-      tech: ["Python", "Hugging Face", "AWS"],
+        "Multilingual failures are usually data and evaluation problems, not just model problems. Fairness across languages depends on translation strategy, metrics design, and infrastructure choices as much as raw model capability.",
+      tech: ["Python", "Hugging Face", "LLMs"],
       github:
         "https://github.com/3x-dev/Comparative-Study-of-Bias-and-Accuracy-in-Multilingual-LLMs-for-Cross-Language-Claim-Verification",
     },

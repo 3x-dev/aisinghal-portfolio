@@ -55,13 +55,13 @@ export default function About() {
       period: "2025-Present",
       title: "Purdue Student",
       description:
-        "Studying Artificial Intelligence at Purdue (Boiler Up!) with a planned Computer Science double. Got bored of writing research papers so now I'm shipping high-impact products.",
+        "Studying Artificial Intelligence at Purdue (Boiler Up!) with a planned Computer Science double.",
     },
     {
       period: "Mar 2024 - Aug 2025",
-      title: "ASTRA · Executive Board",
+      title: "ASTRA: Association of Students for Research in AI",
       description:
-        "Scaled Purdue’s student AI research org. Matched builders to mentors, orchestrated reading groups, and turned scrappy ideas into papers and open-source artifacts.",
+        "Served on the executive board while leading and publishing research with high school collaborators, including a paper accepted to EMNLP.",
     },
     {
       period: "Oct 2023 - Aug 2025",
@@ -154,7 +154,7 @@ export default function About() {
       period: "2012-2022",
       title: "Martial Arts Journey",
       description:
-        "Mom and dad signed me up for Taekwondo when I was 5 (classic Asian parent move). 10+ years of drills, sparring, and teaching students to channel their power, I achieved my third-degree black belt. ",
+        "Mom and dad signed me up for Taekwondo when I was 5 (classic Asian parents). 10+ years of drills, sparring, and teaching students to channel their power, I achieved my third-degree black belt. ",
     },
   ];
 
