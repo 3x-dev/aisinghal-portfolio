@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ export function Navigation() {
   const location = useLocation();
   const [navOpacity, setNavOpacity] = useState(1);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { shouldReduceEffects } = useReducedEffects();
 
   useEffect(() => {
@@ -42,6 +44,10 @@ export function Navigation() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [location.pathname]);
   
   const links = [
     { path: "/", label: "Home" },
@@ -128,11 +134,57 @@ export function Navigation() {
           </div>
 
           <div className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <span className="text-violet-400">☰</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-11 w-11 rounded-full border border-white/10 bg-white/5 text-violet-200 transition-colors hover:text-white"
+              onClick={() => setIsMobileOpen((prev) => !prev)}
+              aria-expanded={isMobileOpen}
+              aria-controls="mobile-nav"
+              aria-label="Toggle navigation"
+            >
+              {isMobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
             </Button>
           </div>
         </div>
+
+        <AnimatePresence initial={false}>
+          {isMobileOpen && (
+            <motion.div
+              id="mobile-nav"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="mt-4 rounded-2xl border border-white/10 bg-black/80 p-2 shadow-[0_16px_30px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                {links.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                        isActive
+                          ? "bg-white/10 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {isActive && (
+                        <span className="text-[0.6rem] uppercase tracking-[0.35em] text-violet-300">
+                          live
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );

@@ -115,7 +115,7 @@ export default function PastWork() {
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <FileText className="h-6 w-6 text-violet-400" />
-                <h2 className="text-3xl font-bold">Publications timeline</h2>
+                <h2 className="text-3xl font-bold">Publications Timeline</h2>
               </div>
               <div className="relative pl-6">
                 <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/60 via-fuchsia-500/30 to-transparent" />
@@ -142,16 +142,13 @@ export default function PastWork() {
                         <CardContent className="p-6 space-y-4">
                           <div className="flex flex-wrap items-center justify-between gap-3">
                             <h3 className="text-xl font-bold">{pub.title}</h3>
-                            <Badge className="bg-violet-500/15 text-violet-100 border-violet-400/40">
-                              {pub.year}
-                            </Badge>
                           </div>
                           <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
-                            <Badge className="bg-white/5 text-white border-white/10">
+                            <Badge className="bg-white/5 text-white border-white/10 whitespace-normal text-left leading-snug">
                               {pub.venue}
                             </Badge>
                             <span className="uppercase tracking-[0.3em] text-gray-500">
-                              {pub.type}
+                              {pub.year}
                             </span>
                           </div>
                           <p className="text-gray-400 leading-relaxed">{pub.description}</p>
@@ -201,7 +198,7 @@ export default function PastWork() {
                           </p>
                           <h3 className="text-lg font-semibold text-white">{poster.title}</h3>
                         </div>
-                        <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40">
+                        <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40 whitespace-normal text-left leading-snug">
                           {poster.venue}
                         </Badge>
                         <p className="text-sm text-gray-300 leading-relaxed">

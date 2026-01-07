@@ -217,3 +217,20 @@
     animation: none;
   }
 }
+
+@media (max-width: 640px) {
+  .nightstand-marquee {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+  }
+
+  .nightstand-track {
+    animation: none;
+  }
+
+  .nightstand-track > * {
+    scroll-snap-align: start;
+  }
+}

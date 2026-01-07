@@ -194,9 +194,9 @@ export default function Now() {
                   className={`relative overflow-hidden rounded-3xl bg-zinc-950/70 border-zinc-900 ${accents[idx % accents.length].border} transition-all duration-500 backdrop-blur-md`}
                 >
                   <CardContent className="p-8">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                    <div className="flex flex-col items-start gap-6 md:flex-row">
                       <motion.div
-                        className={`p-4 rounded-2xl shadow-inner transition-colors duration-300 ${accents[idx % accents.length].iconWrap}`}
+                        className={`inline-flex items-center justify-center self-start rounded-2xl p-4 shadow-inner transition-colors duration-300 ${accents[idx % accents.length].iconWrap}`}
                         animate={{ rotate: [0, 2, -2, 0] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
                       >
@@ -257,14 +257,14 @@ export default function Now() {
               <Card
                 className={`relative overflow-hidden rounded-3xl bg-zinc-950/70 border-zinc-900 ${readingAccent.border} transition-all duration-500 backdrop-blur-md`}
               >
-                <CardContent className="p-8">
-                  <div className="flex flex-col gap-8 md:flex-row md:items-start">
-                    <motion.div
-                      className={`p-4 rounded-2xl shadow-inner transition-colors duration-300 ${readingAccent.iconWrap}`}
-                      animate={{ rotate: [0, 3, -3, 0] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <BookMarked className="h-7 w-7" />
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-start gap-8 md:flex-row">
+                      <motion.div
+                        className={`inline-flex items-center justify-center self-start rounded-2xl p-4 shadow-inner transition-colors duration-300 ${readingAccent.iconWrap}`}
+                        animate={{ rotate: [0, 3, -3, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <BookMarked className="h-7 w-7" />
                     </motion.div>
                     <div className="flex-1 space-y-8">
                       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
