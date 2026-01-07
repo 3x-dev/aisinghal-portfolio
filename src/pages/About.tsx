@@ -68,7 +68,7 @@ export default function About() {
       title: "Q-Sight Labs · Co-Founder",
       description: (
         <>
-          Co-built the first quantum vision transformer for multi-stage Alzheimer&apos;s detection. The science fair judges passed, so we shipped it to NeurIPS 2024 instead.{" "}
+          Co-built the first quantum vision transformer for multi-stage Alzheimer&apos;s detection. Published at NeurIPS 2024.{" "}
           <a
             href="https://openreview.net/pdf?id=suWYAfyWBa"
             target="_blank"

@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { FileText, Award, Presentation, Sparkles } from "lucide-react";
+import { FileText, Award, Presentation, Linkedin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Navigation } from "@/components/Navigation";
 
@@ -9,47 +10,66 @@ export default function PastWork() {
   const publications = [
     {
       title:
-        "A Comparative Study of Translation Bias and Accuracy in Multilingual Large Language Models for Cross-Language Claim Verification",
-      venue: "NeurIPS 2024 (ATTRIB Workshop)",
+        "QViSTA: A Novel Quantum Vision Transformer for Early Multi-Stage Alzheimer’s Diagnosis Using Optimized Variational Quantum Circuits",
+      venue: "NeurIPS 2024 · GenAI4Health Workshop",
       year: "2024",
-      type: "publication",
+      paperUrl: "https://openreview.net/pdf?id=suWYAfyWBa",
       description:
-        "Evaluated GPT 4o, Llama 3.1, and Mistral models on hundreds of factual claims across 15 languages, defining accuracy and translation bias metrics that reveal a large performance gap between high and low resource languages.",
+        "Hybrid quantum vision transformer that pairs optimized variational quantum circuits with ViTs to stage Alzheimer’s from MRI while reducing feature space.",
     },
     {
       title:
-        "QViSTA: Quantum Vision Transformers for Early Alzheimer’s Detection",
-      venue: "NeurIPS 2024 (GenAI for Health Workshop)",
-      year: "2024",
-      type: "publication",
-      description:
-        "Introduced a quantum vision transformer for multi stage Alzheimer’s diagnosis from MRI scans, using a variational quantum circuit to cut compute cost while keeping accuracy competitive with classical baselines.",
-    },
-    {
-      title: "Multilingual Fact-Checking Using Large Language Models",
-      venue: "EMNLP 2024 (NLP for Positive Impact Workshop)",
-      year: "2024",
-      type: "publication",
-      description:
-        "Built a multilingual fact checking benchmark and pipeline across five languages using prompting strategies, translation paths, and calibration to study how well LLMs verify real world claims in low resource settings.",
-    },
-    {
-      title:
-        "Unveiling Bias in ChatGPT 3.5: Analyzing Constitutional AI Principles for Politically Biased Responses",
+        "Unveiling bias in ChatGPT-3.5: Analyzing constitutional AI principles for politically biased responses",
       venue: "Journal of Emerging Investigators",
       year: "2024",
-      type: "journal",
+      paperUrl: "https://emerginginvestigators.org/articles/24-047",
       description:
-        "Used Constitutional AI style principles to test whether rule based constraints can reduce political bias in ChatGPT 3.5, finding limited gains from off the shelf principles but promising reductions on some topics with a tailored principle and prompt template.",
+        "Tested constitutional AI principles to reduce political bias in ChatGPT-3.5, with measurable gains on select topics and limits elsewhere.",
     },
     {
       title:
-        "Mitigating Political Bias in ChatGPT Using Chain of Thought and Constitutional AI",
-      venue: "IJRASET",
+        "Can LLMs Verify Arabic Claims? Evaluating the Arabic Fact-Checking Abilities of Multilingual LLMs",
+      venue: "NeurIPS 2024 · Safe Generative AI Workshop",
       year: "2024",
-      type: "journal",
+      paperUrl: "https://arxiv.org/abs/2410.10303",
       description:
-        "Showed that chain of thought prompting can reduce directional political bias in ChatGPT on open ended prompts while maintaining response quality, by iteratively refining answers using measured bias scores.",
+        "Benchmarked prompting strategies on 771 Arabic claims, showing cross-lingual prompting yields the strongest accuracy gains.",
+    },
+    {
+      title:
+        "Multilingual Fact-Checking using LLMs",
+      venue: "EMNLP 2024 · NLP for Positive Impact Workshop",
+      year: "2024",
+      paperUrl: "https://aclanthology.org/2024.nlp4pi-1.2/",
+      description:
+        "Built a multilingual claim verification benchmark across five languages and compared prompting strategies, with strong results in low-resource settings.",
+    },
+    {
+      title:
+        "A Comparative Study of Translation Bias and Accuracy in Multilingual Large Language Models for Cross-Language Claim Verification",
+      venue: "NeurIPS 2024 · ATTRIB Workshop",
+      year: "2024",
+      paperUrl: "https://openreview.net/pdf?id=3bdJJaxiwt",
+      description:
+        "Measured translation bias across 15 languages and compared pre-translation versus self-translation, highlighting the steep low-resource drop-off.",
+    },
+    {
+      title:
+        "Mitigating Political Bias in Large Language Models Using Chain of Thought Prompting Techniques",
+      venue: "International Journal for Research in Applied Science & Engineering Technology",
+      year: "2024",
+      paperUrl: "https://www.ijraset.com/research-paper/mitigating-political-bias-in-large-language-models",
+      description:
+        "Iterative chain-of-thought prompting paired with bias scoring reduced political skew while preserving response quality.",
+    },
+    {
+      title:
+        "Inferring Hate Speech Trends for Contemporary Tweets Using a Novel Machine Learning Approach from Supervised Learning Algorithms",
+      venue: "Monta Vista - The Research Journal",
+      year: "2023",
+      paperUrl: "https://sites.google.com/view/mvrj/the-research-journal",
+      description:
+        "Tracked hate speech prevalence across topics with Naive Bayes and NLP features, showing higher rates in controversial discussions.",
     },
   ];
 
@@ -62,16 +82,19 @@ export default function PastWork() {
       year: "2023",
       type: "poster",
       description:
-        "Presented early work on measuring and mitigating political bias in ChatGPT using prompt design and Constitutional AI ideas, aimed at making large public models safer for civic discussions.",
+        "Poster on early bias measurement work and prompt strategies aimed at safer public model behavior.",
     },
     {
       title:
-        "Severity Aware Hate Speech Detection in Extremist Online Communities",
-      venue: "UC Santa Barbara CITS Research Symposium",
+        "QViSTA: A Novel Quantum Vision Transformer for Early Multi-Stage Alzheimer’s Diagnosis",
+      venue: "NeurIPS 2024 · GenAI4Health Workshop",
       year: "2024",
       type: "poster",
+      linkType: "poster",
+      posterUrl:
+        "https://docs.google.com/presentation/d/1AryC1JMgUuqIdjBpS1Vf_-DPL8avO8H8KZcd3tqkiq0/edit?usp=sharing",
       description:
-        "Showcased an ensemble model that scores hate speech severity on a 1 to 6 scale for real extremist forums, highlighting techniques for handling label noise and subtle coded language.",
+        "Poster on the QViSTA hybrid quantum ViT that stages Alzheimer’s from MRI using optimized variational quantum circuits.",
     },
     {
       title:
@@ -79,16 +102,13 @@ export default function PastWork() {
       venue: "ASTRA AI Lab Research Showcase",
       year: "2024",
       type: "poster",
+      linkType: "linkedin",
+      posterUrl:
+        "https://www.linkedin.com/posts/aryan-singhal-ai_last-week-i-had-the-incredible-opportunity-activity-7266348635246780416-nbXy?utm_source=share&utm_medium=member_desktop&rcm=ACoAADXhcw4BbowuabrWq25lI9IcTFHYpSgODaY",
       description:
-        "Summarized the multilingual claim verification pipeline and bias metrics work, focusing on failure modes when fact checking news and social media content outside of English.",
+        "LinkedIn post summarizing the multilingual claim verification pipeline, bias metrics, and low-resource failure modes.",
     },
   ];
-
-  const tickerItems = [...publications, ...posters].map((item) => ({
-    title: item.title,
-    venue: item.venue,
-    tag: item.type,
-  }));
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -144,7 +164,7 @@ export default function PastWork() {
                             <h3 className="text-xl font-bold">{pub.title}</h3>
                           </div>
                           <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
-                            <Badge className="bg-white/5 text-white border-white/10 whitespace-normal text-left leading-snug">
+                            <Badge className="bg-white/5 text-white border-white/10 whitespace-normal text-left leading-snug max-w-full break-words">
                               {pub.venue}
                             </Badge>
                             <span className="uppercase tracking-[0.3em] text-gray-500">
@@ -152,6 +172,23 @@ export default function PastWork() {
                             </span>
                           </div>
                           <p className="text-gray-400 leading-relaxed">{pub.description}</p>
+                          {pub.paperUrl && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-fit border-violet-400/40 text-violet-100 hover:bg-violet-500/10"
+                              asChild
+                            >
+                              <a
+                                href={pub.paperUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FileText className="h-4 w-4" />
+                                Read the paper
+                              </a>
+                            </Button>
+                          )}
                         </CardContent>
                       </Card>
                     </motion.div>
@@ -198,12 +235,38 @@ export default function PastWork() {
                           </p>
                           <h3 className="text-lg font-semibold text-white">{poster.title}</h3>
                         </div>
-                        <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40 whitespace-normal text-left leading-snug">
+                        <Badge className="bg-amber-500/15 text-amber-100 border-amber-400/40 whitespace-normal text-left leading-snug max-w-full break-words">
                           {poster.venue}
                         </Badge>
                         <p className="text-sm text-gray-300 leading-relaxed">
                           {poster.description}
                         </p>
+                        {poster.posterUrl && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-fit border-amber-400/40 text-amber-100 hover:bg-amber-500/10"
+                            asChild
+                          >
+                            <a
+                              href={poster.posterUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {poster.linkType === "linkedin" ? (
+                                <>
+                                  <Linkedin className="h-4 w-4" />
+                                  View post
+                                </>
+                              ) : (
+                                <>
+                                  <Presentation className="h-4 w-4" />
+                                  View poster
+                                </>
+                              )}
+                            </a>
+                          </Button>
+                        )}
                       </CardContent>
                     </Card>
                   </motion.div>
