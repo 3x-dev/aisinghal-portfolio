@@ -391,7 +391,12 @@ export default function Now() {
             transition={{ delay: 0.6 }}
             className="mt-12 text-center text-gray-500 text-sm"
           >
-            Last updated: {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+            Last updated:{" "}
+            {new Date().toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
           </motion.div>
         </motion.div>
       </div>
