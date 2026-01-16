@@ -4,7 +4,7 @@ import { useReducedEffects } from "@/hooks/use-reduced-effects";
 
 const FLOATING_ORBS = [
   {
-    size: 560,
+    size: 480,
     color: "rgba(147,51,234,0.45)",
     position: { left: "5%", top: "10%" },
     animate: { x: [0, 80, -60, 0], y: [0, -70, 40, 0], scale: [1, 1.25, 1] },
@@ -12,7 +12,7 @@ const FLOATING_ORBS = [
     delay: 0,
   },
   {
-    size: 460,
+    size: 400,
     color: "rgba(236,72,153,0.42)",
     position: { right: "8%", top: "15%" },
     animate: { x: [0, -60, 40, 0], y: [0, 60, -40, 0], scale: [1, 1.3, 1] },
@@ -20,7 +20,7 @@ const FLOATING_ORBS = [
     delay: 2,
   },
   {
-    size: 520,
+    size: 450,
     color: "rgba(217,70,239,0.35)",
     position: { left: "18%", bottom: "10%" },
     animate: { x: [0, 90, -30, 0], y: [0, -40, 60, 0], scale: [1, 1.2, 1] },
@@ -28,7 +28,7 @@ const FLOATING_ORBS = [
     delay: 1,
   },
   {
-    size: 420,
+    size: 360,
     color: "rgba(168,85,247,0.35)",
     position: { right: "20%", bottom: "12%" },
     animate: { x: [0, -80, 20, 0], y: [0, -20, 40, 0], scale: [1, 1.35, 1] },
@@ -37,7 +37,7 @@ const FLOATING_ORBS = [
   },
 ];
 
-const PARTICLE_CONFIGS = Array.from({ length: 16 }, (_, i) => ({
+const PARTICLE_CONFIGS = Array.from({ length: 10 }, (_, i) => ({
   id: i,
   size: 2 + (i % 3),
   left: `${(i * 13 + 7) % 100}%`,
@@ -115,7 +115,7 @@ export function AnimatedBackground() {
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* Animated gradient orbs */}
       <motion.div
-        className="absolute w-[360px] h-[360px] rounded-full pointer-events-none blur-[120px] opacity-45"
+        className="absolute w-[320px] h-[320px] rounded-full pointer-events-none blur-[100px] opacity-40"
         style={{
           background: "radial-gradient(circle, rgba(45,12,81,0.8) 0%, transparent 60%)",
           left: orb1Left,
@@ -159,7 +159,7 @@ export function AnimatedBackground() {
         style={{
           backgroundImage:
             "linear-gradient(125deg, rgba(167,139,250,0.25), rgba(236,72,153,0.15), rgba(167,139,250,0.25))",
-          backgroundSize: "300% 300%",
+          backgroundSize: "250% 250%",
         }}
         animate={{
           backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
@@ -195,7 +195,7 @@ export function AnimatedBackground() {
 
       {/* Rotating gradient beam */}
       <motion.div
-        className="absolute inset-0 pointer-events-none opacity-35 blur-[140px]"
+        className="absolute inset-0 pointer-events-none opacity-30 blur-[120px]"
         style={{
           background:
             "conic-gradient(from 90deg at 50% 50%, rgba(147,51,234,0.25), rgba(236,72,153,0.25), rgba(147,51,234,0.25))",

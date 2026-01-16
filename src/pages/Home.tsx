@@ -176,22 +176,9 @@ function shuffleIndices(length: number) {
                 Hey there, I'm
               </motion.p>
               <h1 className="text-8xl md:text-9xl font-black mb-8 leading-none">
-                <motion.span
-                  className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    backgroundSize: "200% 200%",
-                  }}
-                >
+                <span className="block animated-gradient-text">
                   ARYAN
-                </motion.span>
+                </span>
                 <motion.span
                   className="block text-white"
                   initial={{ opacity: 0, x: -20 }}
@@ -413,6 +400,8 @@ function shuffleIndices(length: number) {
                         src="/me_cropped.png"
                         alt="Aryan Singhal"
                         className="h-full w-full object-cover"
+                        decoding="async"
+                        fetchPriority="high"
                         style={{ transform: "translateZ(36px)" }}
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 opacity-70" />
