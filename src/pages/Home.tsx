@@ -53,13 +53,13 @@ export default function Home() {
   const socialLinks = [
     {
       label: "GitHub",
-      href: "https://github.com/3x-dev",
+      href: "https://github.com/ai-singhal",
       icon: Github,
       className: "border-violet-500/40 bg-violet-500/10 text-violet-200 hover:border-violet-300 hover:bg-violet-500/20",
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/aryan-singhal-ai",
+      href: "https://www.linkedin.com/in/aisinghal/",
       icon: Linkedin,
       className: "border-sky-500/40 bg-sky-500/10 text-sky-200 hover:border-sky-300 hover:bg-sky-500/20",
     },
@@ -320,43 +320,6 @@ function shuffleIndices(length: number) {
                 </motion.div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.15 }}
-                className="mt-8 flex flex-col gap-4 items-center lg:items-start"
-              >
-                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-zinc-500">
-                  <span className="h-px w-10 bg-zinc-700/70" />
-                  Find me on
-                  <span className="h-px w-10 bg-zinc-700/70" />
-                </div>
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                  {socialLinks.map((link, index) => (
-                    <motion.a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={link.label}
-                      whileHover={{
-                        y: -6,
-                        scale: 1.14,
-                        boxShadow: "0 18px 35px rgba(10, 10, 20, 0.55)",
-                      }}
-                      whileTap={{ scale: 0.96, y: -2 }}
-                      transition={{ type: "spring", stiffness: 320, damping: 16, delay: index * 0.03 }}
-                      className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur ${link.className}`}
-                    >
-                      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <span className="absolute inset-0 rounded-full bg-white/10 opacity-0 blur-md transition duration-300 group-hover:opacity-70" />
-                      <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                        <link.icon className="h-5 w-5" />
-                      </span>
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
             </motion.div>
 
             <motion.div
@@ -411,6 +374,43 @@ function shuffleIndices(length: number) {
                 <p className="mt-3 text-center text-sm text-gray-400">
                   Me at Kauai, Hawaii this past winter break!
                 </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.15 }}
+                  className="mt-6 flex flex-col gap-4 items-center"
+                >
+                  <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-zinc-500">
+                    <span className="h-px w-10 bg-zinc-700/70" />
+                    Find me on
+                    <span className="h-px w-10 bg-zinc-700/70" />
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    {socialLinks.map((link, index) => (
+                      <motion.a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={link.label}
+                        whileHover={{
+                          y: -6,
+                          scale: 1.14,
+                          boxShadow: "0 18px 35px rgba(10, 10, 20, 0.55)",
+                        }}
+                        whileTap={{ scale: 0.96, y: -2 }}
+                        transition={{ type: "spring", stiffness: 320, damping: 16, delay: index * 0.03 }}
+                        className={`group relative inline-flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur ${link.className}`}
+                      >
+                        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="absolute inset-0 rounded-full bg-white/10 opacity-0 blur-md transition duration-300 group-hover:opacity-70" />
+                        <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                          <link.icon className="h-5 w-5" />
+                        </span>
+                      </motion.a>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
