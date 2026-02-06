@@ -328,49 +328,51 @@ function shuffleIndices(length: number) {
               transition={{ duration: 0.8, delay: 0.35 }}
               className="flex-1 w-full flex justify-center lg:justify-end"
             >
-              <div
-                className="w-full max-w-[360px]"
-                onMouseMove={handleTilt}
-                onMouseLeave={resetTilt}
-                style={{ perspective: "1200px" }}
-              >
-                <motion.div
-                  style={{
-                    rotateX: tiltXSpring,
-                    rotateY: tiltYSpring,
-                    transformStyle: "preserve-3d",
-                    backgroundSize: "200% 200%",
-                  }}
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    backgroundPosition: {
-                      duration: 12,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 16,
-                  }}
-                  whileHover={{ scale: 1.02 }}
-                  className="rounded-[32px] bg-gradient-to-br from-violet-500/60 via-fuchsia-400/50 to-emerald-300/40 p-[2px] shadow-[0_32px_70px_rgba(72,26,128,0.45)]"
+              <div className="w-full max-w-[360px]">
+                <div
+                  className="w-full"
+                  onMouseMove={handleTilt}
+                  onMouseLeave={resetTilt}
+                  style={{ perspective: "1200px" }}
                 >
-                  <div className="rounded-[30px] bg-black/80 p-2">
-                    <div className="relative aspect-square overflow-hidden rounded-[26px]">
-                      <img
-                        src="/me_cropped.png"
-                        alt="Aryan Singhal"
-                        className="h-full w-full object-cover"
-                        decoding="async"
-                        fetchPriority="high"
-                        style={{ transform: "translateZ(36px)" }}
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 opacity-70" />
+                  <motion.div
+                    style={{
+                      rotateX: tiltXSpring,
+                      rotateY: tiltYSpring,
+                      transformStyle: "preserve-3d",
+                      backgroundSize: "200% 200%",
+                    }}
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    transition={{
+                      backgroundPosition: {
+                        duration: 12,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 16,
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    className="rounded-[32px] bg-gradient-to-br from-violet-500/60 via-fuchsia-400/50 to-emerald-300/40 p-[2px] shadow-[0_32px_70px_rgba(72,26,128,0.45)]"
+                  >
+                    <div className="rounded-[30px] bg-black/80 p-2">
+                      <div className="relative aspect-square overflow-hidden rounded-[26px]">
+                        <img
+                          src="/me_cropped.png"
+                          alt="Aryan Singhal"
+                          className="h-full w-full object-cover"
+                          decoding="async"
+                          fetchPriority="high"
+                          style={{ transform: "translateZ(36px)" }}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 opacity-70" />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
                 <p className="mt-3 text-center text-sm text-gray-400">
                   Me at Kauai, Hawaii this past winter break!
                 </p>
